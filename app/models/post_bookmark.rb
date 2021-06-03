@@ -1,0 +1,2 @@
+class PostBookmark < ApplicationRecord
+end
