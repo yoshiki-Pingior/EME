@@ -1,2 +1,43 @@
 <h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div>ユーザー情報詳細</div>
+
+<div class="row align-items-md-stretch">
+
+  <div class="col-md-3">
+    <div class="user_image">
+      <%= "画像" %>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <table>
+      <tr>
+        <div class="form-group">
+          <th><label>フリガナ</label></th>
+            <td>
+              <%= current_user.last_name_kana %>
+              <%= current_user.first_name_kana %>
+            </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th><label>名前</label></th>
+            <td>
+              <%= current_user.last_name %>
+              <%= current_user.first_name %>
+            </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th><label>自己紹介</label></th>
+            <td><%= current_user.introduction %></td>
+        </div>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+

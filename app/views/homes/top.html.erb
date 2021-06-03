@@ -1,2 +1,18 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<body class="test-center">
+  <main class="form-top">
+    <form>
+      <h1 class="h3 mb-3 fw-normal">EME<br>(enhance mutual exchange)</h1>
+      <%= link_to "新規登録", new_user_registration_path, class: "w-100 btn btn-lg btn-info" %>
+      <%= link_to "ログイン", new_user_session_path, class: "w-100 btn btn-lg btn-success" %>
+
+      <!--お問い合わせフォームは別日に調整-->
+      <button class="w-100 btn btn-lg btn-secondary" type="submit">お問い合わせ</button>
+
+      <%= link_to "パスワードを忘れた方", new_user_password_path, class: "w-100 btn btn-lg btn-info" %>
+
+      <div class="top-intro">サイト紹介文</div>
+    </form>
+  </main>
+</body>
+
+

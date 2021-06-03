@@ -1,2 +1,66 @@
 <h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+
+
+<div class="row align-items-md-stretch">
+  <div class="col-md-3">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <table>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>画像</td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>
+                <%= current_user.last_name_kana %>
+                <%= current_user.first_name_kana %>
+              </td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>
+                <%= current_user.last_name %>
+                <%= current_user.first_name %>
+              </td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>ユーザー情報</td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>フォロー数</td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>フォロワー数</td>
+            </th>
+          </div>
+        </tr>
+      </table>
+      <%= link_to '詳細', "/users/:id" %>
+    </div>
+  </div>
+  
+  <div class="col-md-9">
+    <div class="h-100 p-5 text-black bg-light rounded-3">
+      <div>フォローユーザーの投稿記事</div>
+    </div>
+  </div>
+</div>
