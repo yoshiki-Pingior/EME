@@ -1,2 +1,87 @@
 <h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+
+<h2>プロフィール編集</h2>
+
+<%= form_with model:current_user, local:true do |f| %>
+<div class="row align-items-md-stretch">
+
+  <div class="col-md-3">
+    <div class="user_image">
+      <%= f.attachment_field :image %>
+    </div>
+  </div>
+  
+  <div class="col-md-7">
+  <table>
+    <tr>
+      <div class="form-group">
+        <th><label>名前</label></th>
+        <td>(姓)</td>
+        <td><%= f.text_field :last_name,autofocus: true %></td>
+        <td>(名)</td>
+        <td><%= f.text_field :first_name,autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>フリガナ</label></th>
+        <td>(セイ)</td>
+        <td><%= f.text_field :last_name_kana,autofocus: true %></td>
+        <td>(メイ)</td>
+        <td><%= f.text_field :first_name_kana,autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>自己紹介</label></th>
+        <td></td>
+        <td><%= f.text_field :introduction, autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>経歴</label></th>
+        <td></td>
+        <td><%= f.text_field :career, autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>趣味</label></th>
+        <td></td>
+        <td><%= f.text_field :hobby, autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>興味のある分野</label></th>
+        <td></td>
+        <td><%= f.text_field :interest_field, autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>休日の過ごし方</label></th>
+        <td></td>
+        <td><%= f.text_field :holiday, autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>資格</label></th>
+        <td></td>
+        <td><%= f.text_field :qualification, autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="form-group">
+        <th><label>自由欄</label></th>
+        <td></td>
+        <td><%= f.text_area :free_space, autofocus: true %></td>
+      </div>
+    </tr>
+  </table>
+  <%= f.submit "変更を保存" %>
+  </div>
+</div>
+<% end %>

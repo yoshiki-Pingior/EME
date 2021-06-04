@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+      <div class="container">
+        <% if user_signed_in? %>
+          <a class="navbar-brand" href="/users"><span style="font-size: 50px">EME</span></a>
+        <% else %>
+          <a class="navbar-brand" href="/"><span style="font-size: 50px">EME</span></a>
+        <% end %>
+        
+        <nav>
+          <ul class="nav navbar-nav navbar-right ml-auto bg p-4">
+            <% if user_signed_in? %>
+              <%= render 'layouts/user_header' %>
+            <% else %>
+              <!--トップ画面（ログイン前）にはヘッダーを設けないため何も記載していない-->
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </nav>

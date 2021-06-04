@@ -1,2 +1,31 @@
 <h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+
+<h2>投稿詳細</h2>
+
+
+<div class='col-md-8 offset-md-1'>
+        <table class='table table-hover table-inverse'>
+          <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <div><%= l @post.created_at, format: :short %></div>
+          <tr>
+            <td>記事タイトル</td>
+            <td><%= @post.post_title %></td>
+          </tr>
+          <tr>
+            <td>タグ一覧</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>記事内容</td>
+            <td><%= @post.post_text %></td>
+          </tr>
+          <tr>
+            <td>画像</td>
+            <td><%= attachment_image_tag @post, :image,fallback: "no_image.jpg", size:"100x50" %></td>
+          </tr>
+          <tr>
+            <td>自由欄</td>
+            <td><%= @post.post_free_space %></td>
+          </tr>
+        </table>
+      </div>
