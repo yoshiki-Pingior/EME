@@ -5,7 +5,7 @@
 
   <div class="col-md-3">
     <div class="user_image">
-      <%= "画像" %>
+      <%= attachment_image_tag @user, :image,fallback: "no_image.jpg", size: "300x250"%>
     </div>
   </div>
 
@@ -35,7 +35,47 @@
             <td><%= current_user.introduction %></td>
         </div>
       </tr>
+
+      <tr>
+        <div class="form-group">
+          <th><label>経歴</label></th>
+            <td><%= current_user.career %></td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th><label>趣味</label></th>
+            <td><%= current_user.hobby %></td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th><label>興味のある分野</label></th>
+            <td><%= current_user.interest_field %></td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th><label>休日の過ごし方</label></th>
+            <td><%= current_user.holiday %></td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th><label>資格</label></th>
+            <td><%= current_user.qualification %></td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th><label>自由欄</label></th>
+            <td><%= current_user.free_space %></td>
+        </div>
+      </tr>
     </table>
+    <% if @user.id == current_user.id %>
+      <%= link_to "編集する" ,edit_user_path %>
+    <% end %>
   </div>
 </div>
 

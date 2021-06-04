@@ -1,2 +1,37 @@
 <h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="margin-top: 10px;">
+      <h2>新規投稿</h2>
+      <%= form_with model:@post, url:'/posts', local:true do |f| %>
+      <div class='col-md-8 offset-md-1'>
+        <table class='table table-hover table-inverse'>
+          <tr>
+            <td>記事タイトル</td>
+            <td><%= f.text_field :post_title %></td>
+          </tr>
+          <tr>
+            <td>タグ一覧（付与したい場合は記入）</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>記事内容</td>
+            <td><%= f.text_area :post_text %></td>
+          </tr>
+          <tr>
+            <td>画像</td>
+            <td><%= f.attachment_field :image %></td>
+          </tr>
+          <tr>
+            <td>自由欄</td>
+            <td><%= f.text_area :post_free_space %></td>
+          </tr>
+          <tr>
+            <td><%= f.submit '新規作成',class: 'btn btn-success' %></td>
+          </tr>
+        </table>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

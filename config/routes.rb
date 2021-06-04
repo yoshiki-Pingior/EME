@@ -4,12 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update]
+  
+  resources :posts, only: [:index, :show, :new, :create, :destroy]
 
-  get 'posts/index'
-  get 'posts/new'
-  get 'posts/show'
-  get 'posts/create'
-  get 'posts/destroy'
+
   get 'relationships/create'
   get 'relationships/destroy'
 

@@ -1,4 +1,7 @@
 <h1>Users#index</h1>
+<div style="width:150px; height:100px; background:limegreen; border-radius:70px 0; text-align:center; padding-top:40px">
+  <%= link_to "新規投稿", new_post_path,class: 'create-page' %>  
+</div>
 
 
 <div class="row align-items-md-stretch">
@@ -8,7 +11,7 @@
         <tr>
           <div class="form-group">
             <th>
-              <td>画像</td>
+              <td><%= attachment_image_tag @user, :image,fallback: "no_image.jpg", size: "100x70"%></td>
             </th>
           </div>
         </tr>
@@ -54,10 +57,10 @@
           </div>
         </tr>
       </table>
-      <%= link_to '詳細', "/users/:id" %>
+      <%= link_to '詳細', user_path(current_user.id) %>
     </div>
   </div>
-  
+
   <div class="col-md-9">
     <div class="h-100 p-5 text-black bg-light rounded-3">
       <div>フォローユーザーの投稿記事</div>

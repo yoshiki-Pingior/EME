@@ -10,11 +10,10 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% end %>
+    <%= render 'layouts/header' %>   <!--ヘッダー--> 
+      
     <%= yield %>
+    
+    <%= render 'layouts/footer' %>   <!--フッター-->  
   </body>
 </html>
