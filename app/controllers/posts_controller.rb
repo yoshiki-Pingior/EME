@@ -9,10 +9,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     @post.save
     redirect_to posts_path
   end
@@ -26,6 +28,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:post_title, :post_text, :post_free_space, :image)
+    params.require(:post).permit(:post_title, :post_text, :post_free_space, :image, :user_id)
   end
 end

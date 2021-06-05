@@ -1,0 +1,40 @@
+<% content_for(:title, 'ブックマーク一覧') %>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <!-- 検索フォーム -->
+      <form>
+        <div class="input-group mb-3"><input class="form-control" placeholder="検索ワード" type="search"/>
+          <div class="input-group-append"><input type="submit" value="検索" class="btn btn-primary"/></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- 掲示板一覧 -->
+  <!-- 掲示板一覧 -->
+<table>
+  <p>ブックマーク一覧</p>
+  <thead>
+    <tr>
+      <th>投稿者名</th>
+      <th>タイトル</th>
+      <th>本文</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%= bookmark.user.first_name %></td>
+        <td>
+          <%= link_to post_path(bookmark.post) do %>
+            <%= bookmark.post.post_title %>
+          <% end %>
+        </td>
+        <td><%= bookmark.post.post_text %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  </div>
+</div>

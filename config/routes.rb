@@ -5,7 +5,14 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update]
   
-  resources :posts, only: [:index, :show, :new, :create, :destroy]
+  resources :posts, only: [:index, :show, :new, :create, :destroy] do
+    resource :post_favorites, only: [:create, :destroy]
+    resources :post_comments, only: [:create, :destroy]
+    
+    resource :bookmarks, only: [:create, :destroy]
+  end
+  get '/boards/bookmarks' => "boards#bookmarks"
+
 
 
   get 'relationships/create'
