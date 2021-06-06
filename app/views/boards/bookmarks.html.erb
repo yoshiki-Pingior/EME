@@ -24,7 +24,7 @@
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
-        <td><%= bookmark.user.first_name %></td>
+        <td><%= bookmark.post.user.first_name %></td>
         <td>
           <%= link_to post_path(bookmark.post) do %>
             <%= bookmark.post.post_title %>

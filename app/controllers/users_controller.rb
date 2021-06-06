@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def index
     @user = current_user
+    @users = User.all     #追加
+    @post = Post.all
+  end
+
+  def search_user
+    @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+    @post = Post.all
   end
 
   def edit

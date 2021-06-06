@@ -7,6 +7,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <div class="col">
         <% @post.each do |post| %>
+        <% if post.user_id == current_user.id %>                                 <!--投稿したユーザーの記事のみ表示-->
         <div class="card shadow-sm">
           <%= attachment_image_tag post, :image,fallback: "no_image.jpg", size:"100x50" %>
           <div class="card-body">
@@ -37,6 +38,7 @@
           </div>
           <small class="text-muted"><%= l post.created_at, format: :short %></small>
         </div>
+        <% end %>
         <% end %>
       </div>
     </div>

@@ -5,7 +5,10 @@
 
 <div class='col-md-8 offset-md-1'>
         <table class='table table-hover table-inverse'>
-          <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <!--削除機能-->
+          <% if user_signed_in? && current_user.id == @post.user_id %>
+            <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
           <!--いいね機能-->
           <% if @post.favorited_by?(current_user) %>
             <p>
@@ -22,9 +25,9 @@
           <% end %>
          <!--お気に入り機能-->
           <% if @post.bookmarked_by?(current_user) %>
-            <td><%= link_to "ブックマークを外す", post_bookmarks_path(@post), method: :delete %></td>
+            <p><%= link_to "ブックマークを外す", post_bookmarks_path(@post), method: :delete %></p>
           <% else %>
-            <td><%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %></td>
+            <p><%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %></p>
           <% end %>
 
           <div><%= l @post.created_at, format: :short %></div>

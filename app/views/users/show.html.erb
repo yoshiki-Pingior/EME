@@ -7,6 +7,25 @@
     <div class="user_image">
       <%= attachment_image_tag @user, :image,fallback: "no_image.jpg", size: "300x250"%>
     </div>
+    <div>
+      <%= link_to user_followings_path(@user) do %>
+        フォロー数:<%= @user.followings.count %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to user_followers_path(@user) do %>
+        フォロワー数: <%= @user.followers.count %>
+      <% end %>
+    </div>
+    <div>
+      <% if current_user != @user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div class="col-md-7">
@@ -15,8 +34,8 @@
         <div class="form-group">
           <th><label>フリガナ</label></th>
             <td>
-              <%= current_user.last_name_kana %>
-              <%= current_user.first_name_kana %>
+              <%= @user.last_name_kana %>
+              <%= @user.first_name_kana %>
             </td>
         </div>
       </tr>
@@ -24,52 +43,52 @@
         <div class="form-group">
           <th><label>名前</label></th>
             <td>
-              <%= current_user.last_name %>
-              <%= current_user.first_name %>
+              <%= @user.last_name %>
+              <%= @user.first_name %>
             </td>
         </div>
       </tr>
       <tr>
         <div class="form-group">
           <th><label>自己紹介</label></th>
-            <td><%= current_user.introduction %></td>
+            <td><%= @user.introduction %></td>
         </div>
       </tr>
 
       <tr>
         <div class="form-group">
           <th><label>経歴</label></th>
-            <td><%= current_user.career %></td>
+            <td><%= @user.career %></td>
         </div>
       </tr>
       <tr>
         <div class="form-group">
           <th><label>趣味</label></th>
-            <td><%= current_user.hobby %></td>
+            <td><%= @user.hobby %></td>
         </div>
       </tr>
       <tr>
         <div class="form-group">
           <th><label>興味のある分野</label></th>
-            <td><%= current_user.interest_field %></td>
+            <td><%= @user.interest_field %></td>
         </div>
       </tr>
       <tr>
         <div class="form-group">
           <th><label>休日の過ごし方</label></th>
-            <td><%= current_user.holiday %></td>
+            <td><%= @user.holiday %></td>
         </div>
       </tr>
       <tr>
         <div class="form-group">
           <th><label>資格</label></th>
-            <td><%= current_user.qualification %></td>
+            <td><%= @user.qualification %></td>
         </div>
       </tr>
       <tr>
         <div class="form-group">
           <th><label>自由欄</label></th>
-            <td><%= current_user.free_space %></td>
+            <td><%= @user.free_space %></td>
         </div>
       </tr>
     </table>
@@ -80,4 +99,44 @@
 </div>
 
 
-
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col">
+        <% @post.each do |post| %>
+        <% if post.user_id == @user.id %>                                 <!--投稿したユーザーの記事のみ表示-->
+        <div class="card shadow-sm">
+          <%= attachment_image_tag post, :image,fallback: "no_image.jpg", size:"100x50" %>
+          <div class="card-body">
+            <p class="card-title">
+              <%= post.post_title %>
+            </p>
+            <p class="card-text">
+              <%= post.post_text %>
+            </p>
+              <!--いいね機能-->
+            <% if post.favorited_by?(current_user) %>
+              <p>
+                <%= link_to post_post_favorites_path(post), method: :delete do %>
+                  💙 <%= post.post_favorites.count %>いいね
+                <% end %>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to post_post_favorites_path(post), method: :post do %>
+                  💙 <%= post.post_favorites.count %>いいね
+                <% end %>
+              </p>
+            <% end %>
+            
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <%= link_to "詳細画面", post_path(post.id) %>
+          </div>
+          <small class="text-muted"><%= l post.created_at, format: :short %></small>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>

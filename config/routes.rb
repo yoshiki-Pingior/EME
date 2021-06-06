@@ -3,7 +3,14 @@ Rails.application.routes.draw do
   root to: 'homes#top'
 
   devise_for :users
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+  
+  get 'search_user' => 'users#search_user'                                 #ユーザー一覧のpath
+  
   
   resources :posts, only: [:index, :show, :new, :create, :destroy] do
     resource :post_favorites, only: [:create, :destroy]
@@ -11,12 +18,10 @@ Rails.application.routes.draw do
     
     resource :bookmarks, only: [:create, :destroy]
   end
+  
   get '/boards/bookmarks' => "boards#bookmarks"
 
 
-
-  get 'relationships/create'
-  get 'relationships/destroy'
 
 
 
