@@ -5,7 +5,31 @@
 
 <div class='col-md-8 offset-md-1'>
         <table class='table table-hover table-inverse'>
-          <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <!--削除機能-->
+          <% if user_signed_in? && current_user.id == @post.user_id %>
+            <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+          <!--いいね機能-->
+          <% if @post.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_post_favorites_path(@post), method: :delete do %>
+                💙 <%= @post.post_favorites.count %>いいね
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to post_post_favorites_path(@post), method: :post do %>
+                💙 <%= @post.post_favorites.count %>いいね
+              <% end %>
+            </p>
+          <% end %>
+         <!--お気に入り機能-->
+          <% if @post.bookmarked_by?(current_user) %>
+            <p><%= link_to "ブックマークを外す", post_bookmarks_path(@post), method: :delete %></p>
+          <% else %>
+            <p><%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %></p>
+          <% end %>
+
           <div><%= l @post.created_at, format: :short %></div>
           <tr>
             <td>記事タイトル</td>
@@ -28,4 +52,19 @@
             <td><%= @post.post_free_space %></td>
           </tr>
         </table>
-      </div>
+        <!--コメント機能-->
+        <div><p>コメント欄</p></div>
+        <div class="comments">
+          <p>コメント件数:<%= @post.post_comments.count %></p>
+          <% @post.post_comments.each do |post_comment| %>
+            <%= post_comment.user.last_name%><%= post_comment.user.first_name%>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <% end %>
+        </div>
+        <div class="new-comment">
+          <%= form_with(model:[@post, @post_comment],local:true) do |f| %>
+          <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+  </div>
