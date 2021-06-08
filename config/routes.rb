@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get 'search_user' => 'users#search_user'                                 #ユーザー一覧のpath
   
   resources :direct_messages, only: [:create]                             #チャットのメッセージ
-  resources :rooms, only: [:create, :show]                                #チャットのメッセージ部屋
+  resources :rooms, :only => [:create, :show, :index]
+  # get 'direct_message/:id' => 'direct_messages#show', as: 'direct_message'
+  # resources :rooms, only: [:create, :show, :index]                                #チャットのメッセージ部屋
   
   resources :posts, only: [:index, :show, :new, :create, :destroy] do
     resource :post_favorites, only: [:create, :destroy]

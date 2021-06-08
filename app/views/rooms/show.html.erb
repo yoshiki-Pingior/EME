@@ -1,5 +1,5 @@
 <div class="left-button">
-  <%= link_to "ユーザー一覧に戻る", "/users/index",class:"edit-link" %>
+  <%= link_to "ユーザー一覧に戻る", search_user_path,class:"edit-link" %>
 </div>
 <h4 class="rooms-title">気になる同士</h4>
 <% @entries.each do |e| %>
@@ -15,13 +15,14 @@
 <hr>
 <div class="chats">
   <div class="chat">
-    <% if @messages.present? %>
-      <% @messages.each do |m| %>
+    <% if @direct_messages.present? %>
+      <% @direct_messages.each do |m| %>
         <div class="chat-box">
           <div class="chat-face">
             <%#= image_tag m.user.avatar, class:"user-image" %>
           </div>
-          <div class="chat-hukidashi"> <strong><%= m.message %></strong> <br>
+          <div class="chat-hukidashi"> <strong><%= m.message %></strong><br>
+            <lavel><%= m.user.first_name %></label>
             <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
           </div>
         </div>
@@ -29,10 +30,16 @@
     <% end %>
   </div>
   <div class="posts">
-    <%= form_for @message do |f| %>
+    <%= form_for @direct_message do |f| %>
       <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
         <%= f.hidden_field :room_id, value: @room.id %>
           <%= f.submit "投稿",class: 'form-submit'%>
     <% end %>
   </div>
 </div>
+
+<h2 style="text-align:center">
+  <% @entries.each do |e| %>
+    <%="#{e.user.first_name}さんとのチャット"%>
+  <% end %>
+</h2>
