@@ -71,3 +71,5 @@ gem 'rails-i18n', '~> 5.1'       # 日本語
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'     # 画像
 gem 'refile-mini_magick'         # 画像
 gem 'dotenv-rails'               # 環境変数
+
+gem 'font-awesome-rails'

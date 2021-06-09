@@ -1,0 +1,65 @@
+  <div class="col-md-2">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <table>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td><%= attachment_image_tag user, :image,fallback: "no_image.jpg", size: "150x150" ,style: "border-radius: 50%;"%></td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>
+                <%= current_user.last_name_kana %>
+                <%= current_user.first_name_kana %>
+              </td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>
+                <%= current_user.last_name %>
+                <%= current_user.first_name %>
+              </td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>ユーザー情報</td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>          
+                <%= link_to user_followings_path(user) do %>
+                  フォロー数:<%= user.followings.count %>
+                <% end %>
+              </td>
+            </th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th>
+              <td>
+                <%= link_to user_followers_path(user) do %>
+                  フォロワー数: <%= user.followers.count %>
+                <% end %>
+              </td>
+            </th>
+          </div>
+        </tr>
+      </table>
+      <%= link_to '詳細', user_path(current_user.id) %>
+    </div>
+  </div>
+  
+  

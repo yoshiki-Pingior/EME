@@ -1,45 +1,41 @@
-<div class="left-button">
-  <%= link_to "ユーザー一覧に戻る", search_user_path,class:"edit-link" %>
-</div>
-<h4 class="rooms-title">気になる同士</h4>
-<% @entries.each do |e| %>
-  <div class="user-name">
-  <strong>
-    <%#= image_tag e.user.avatar, class:"user-image" %>
-      <a class="rooms-user-link" href="/users/<%= e.user.id %>">
-        <%= e.user.first_name %>さん
-      </a>
-  </strong>
-  </div>
-<% end %>
-<hr>
-<div class="chats">
-  <div class="chat">
-    <% if @direct_messages.present? %>
-      <% @direct_messages.each do |m| %>
-        <div class="chat-box">
-          <div class="chat-face">
-            <%#= image_tag m.user.avatar, class:"user-image" %>
-          </div>
-          <div class="chat-hukidashi"> <strong><%= m.message %></strong><br>
-            <lavel><%= m.user.first_name %></label>
-            <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="posts">
-    <%= form_for @direct_message do |f| %>
-      <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-          <%= f.submit "投稿",class: 'form-submit'%>
-    <% end %>
-  </div>
-</div>
-
-<h2 style="text-align:center">
+<h2 style="text-align:center; margin-top: 50px;">
   <% @entries.each do |e| %>
-    <%="#{e.user.first_name}さんとのチャット"%>
+    <%="#{e.user.first_name}さんと"%>
   <% end %>
+  <%= "のチャット" %>
 </h2>
+  <div class="col-md-4 offset-md-4">
+    <div class="chat">
+      <% if @direct_messages.present? %>
+        <% @direct_messages.each do |m| %>
+          <% if m.user_id==current_user.id %>
+            <div class="right-message">
+              <p><%= m.message %><br>
+              <%= m.created_at.strftime("%Y-%m-%d %H:%M")%></p>
+            </div>
+          <% else %>
+            <div class="left-message">
+              <div class="fukidashi">
+                <div class="faceicon">
+                  <%= attachment_image_tag m.user, :image,fallback: "no_image.jpg", style:"width: 100%; height: auto; border-radius: 50%;"%>
+                </div>
+                <div class="chatting">
+                  <div class="says">
+                    <p><%= m.message %></p>
+                       <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="posts-form">
+      <%= form_for @direct_message do |f| %>
+        <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 60, class:"form-text-field" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "送信",class: 'form-submit'%>
+      <% end %>
+    </div>
+  </div>

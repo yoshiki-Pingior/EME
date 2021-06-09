@@ -40,7 +40,10 @@
           </tr>
           <tr>
             <td>タグ一覧</td>
-            <td></td>
+            <td><% @post.tags.each do |tag| %>
+              <p>#<%= tag.tag_name %></p>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>記事内容</td>
