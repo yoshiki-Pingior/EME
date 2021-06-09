@@ -7,10 +7,14 @@ class User < ApplicationRecord
   has_many :posts
   attachment :image, destroy: false
 
-  has_many :post_favorites, dependent: :destroy
-  has_many :post_comments, dependent: :destroy
+  has_many :post_favorites, dependent: :destroy      #いいね機能
+  has_many :post_comments, dependent: :destroy       #コメント機能
 
-  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy           #お気に入り機能
+  
+  has_many :direct_messages, dependent: :destroy     #チャット機能
+  has_many :entries, dependent: :destroy             #チャット機能
+  has_many :rooms, through: :entries
 
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

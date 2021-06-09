@@ -29,6 +29,9 @@
           <% else %>
             <p><%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %></p>
           <% end %>
+          <%= link_to user_path(@post.user.id) do %>
+            <%= @post.user.last_name %><%= @post.user.first_name %>
+          <% end %>
 
           <div><%= l @post.created_at, format: :short %></div>
           <tr>
@@ -37,7 +40,10 @@
           </tr>
           <tr>
             <td>タグ一覧</td>
-            <td></td>
+            <td><% @post.tags.each do |tag| %>
+              <p>#<%= tag.tag_name %></p>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>記事内容</td>

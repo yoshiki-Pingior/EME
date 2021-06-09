@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   def index
     @user = current_user
-    @users = User.all     #追加
+    @users = @user.followings    #フォローしているユーザー情報取得のため追加
     @post = Post.all
   end
 
@@ -13,6 +13,27 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.all
+    
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+      @msg ="他のユーザーとDMしてみよう！"
+    else
+       @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      
+      if @isRoom != true
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
+    
   end
 
   def edit

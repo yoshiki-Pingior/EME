@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
-  
   get 'search_user' => 'users#search_user'                                 #ユーザー一覧のpath
+  
+  resources :direct_messages, only: [:create]                             #チャットのメッセージ
+  resources :rooms, :only => [:create, :show, :index]
   
   
   resources :posts, only: [:index, :show, :new, :create, :destroy] do

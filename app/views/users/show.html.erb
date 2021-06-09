@@ -26,6 +26,24 @@
         <% end %>
       <% end %>
     </div>
+    
+    <div>
+      <% if @user.id == current_user.id %>
+        <%= @msg %>
+      <% else %>
+        <% if @isRoom == true %>
+          <p><%= link_to 'DMへ', room_path(@roomId) %></p>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e|%>
+              <% e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+          <%= f.submit "DMを開始する"%>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    
   </div>
 
   <div class="col-md-7">
@@ -98,45 +116,44 @@
   </div>
 </div>
 
-
 <div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <div class="col">
-        <% @post.each do |post| %>
-        <% if post.user_id == @user.id %>                                 <!--投稿したユーザーの記事のみ表示-->
-        <div class="card shadow-sm">
-          <%= attachment_image_tag post, :image,fallback: "no_image.jpg", size:"100x50" %>
-          <div class="card-body">
-            <p class="card-title">
-              <%= post.post_title %>
-            </p>
-            <p class="card-text">
-              <%= post.post_text %>
-            </p>
-              <!--いいね機能-->
-            <% if post.favorited_by?(current_user) %>
-              <p>
-                <%= link_to post_post_favorites_path(post), method: :delete do %>
-                  💙 <%= post.post_favorites.count %>いいね
-                <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= link_to post_post_favorites_path(post), method: :post do %>
-                  💙 <%= post.post_favorites.count %>いいね
-                <% end %>
-              </p>
+  <div class="col-md-6">
+    <div class="h-100 p-5 text-black bg-light rounded-3">
+      <div class="texts-wrapper">
+        <div class="contents-title text-center">
+        <div class="row">
+          <% @post.each do |post| %>
+            <% if post.user_id == @user.id %> 
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card">
+                <%= attachment_image_tag post, :image,fallback: "no_image.jpg" %>
+                  <div class="card-body">
+                    <p class="card-title"><label>投稿タイトル:</label>  <%= post.post_title %></p>
+                    <p class="card-text"><%= post.post_text %></p>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <% if post.favorited_by?(current_user) %>
+                      <p>
+                        <%= link_to post_post_favorites_path(post), method: :delete do %>
+                        💙 <%= post.post_favorites.count %>いいね
+                        <% end %>
+                      </p>
+                    <% else %>
+                      <p>
+                        <%= link_to post_post_favorites_path(post), method: :post do %>
+                        💙 <%= post.post_favorites.count %>いいね
+                        <% end %>
+                      </p>
+                    <% end %>
+                    <%= link_to "詳細画面", post_path(post.id) ,class: "btn btn-primary"%>
+                    <small class="text-muted"><%= l post.created_at, format: :short %></small>
+                  </div>
+              </div>
+            </div>
             <% end %>
-            
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <%= link_to "詳細画面", post_path(post.id) %>
-          </div>
-          <small class="text-muted"><%= l post.created_at, format: :short %></small>
+          <% end %>
         </div>
-        <% end %>
-        <% end %>
       </div>
     </div>
   </div>
+</div>

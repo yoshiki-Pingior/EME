@@ -15,8 +15,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      tag_list = tag_params[:tag_name].split(/[[:blank:]]+/).select(&:present?)   #追加
+      @post.save_tags(tag_list)
+      redirect_to posts_path
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -31,5 +36,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:post_title, :post_text, :post_free_space, :image, :user_id)
+  end
+  
+  def tag_params       #追加
+    params.require(:post).permit(:tag_name)
   end
 end

@@ -1,0 +1,41 @@
+<h2 style="text-align:center; margin-top: 50px;">
+  <% @entries.each do |e| %>
+    <%="#{e.user.first_name}さんと"%>
+  <% end %>
+  <%= "のチャット" %>
+</h2>
+  <div class="col-md-4 offset-md-4">
+    <div class="chat">
+      <% if @direct_messages.present? %>
+        <% @direct_messages.each do |m| %>
+          <% if m.user_id==current_user.id %>
+            <div class="right-message">
+              <p><%= m.message %><br>
+              <%= m.created_at.strftime("%Y-%m-%d %H:%M")%></p>
+            </div>
+          <% else %>
+            <div class="left-message">
+              <div class="fukidashi">
+                <div class="faceicon">
+                  <%= attachment_image_tag m.user, :image,fallback: "no_image.jpg", style:"width: 100%; height: auto; border-radius: 50%;"%>
+                </div>
+                <div class="chatting">
+                  <div class="says">
+                    <p><%= m.message %></p>
+                       <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="posts-form">
+      <%= form_for @direct_message do |f| %>
+        <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 60, class:"form-text-field" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "送信",class: 'form-submit'%>
+      <% end %>
+    </div>
+  </div>
