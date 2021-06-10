@@ -3,6 +3,7 @@
     <div class="dm_list__content">
       <%= link_to room_path(room), class: "dm_list__content__lin" do %>
         <div class="dm_list__content__link__box">
+            <%= opponent_user_image(room) %>
             <%= opponent_user(room) %>
             <%= most_new_direct_message_preview(room) %>
         </div>

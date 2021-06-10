@@ -8,12 +8,13 @@ class UsersController < ApplicationController
 
   def search_user
     @users = User.all
+    @users = User.search_user(params[:search_user]).order(created_at: :desc)
   end
 
   def show
     @user = User.find(params[:id])
     @post = Post.all
-    
+
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id
@@ -27,13 +28,13 @@ class UsersController < ApplicationController
           end
         end
       end
-      
+
       if @isRoom != true
         @room = Room.new
         @entry = Entry.new
       end
     end
-    
+
   end
 
   def edit
