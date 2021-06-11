@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   def index
     @user = current_user
-    @users = @user.followings    #フォローしているユーザー情報取得のため追加
-    @post = Post.all
+    #フォローしているユーザー情報取得のため追加
+    @follow_users = @user.followings
+    @posts = Post.all
   end
 
   def search_user
@@ -13,12 +14,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post = Post.all
+    @post = Post.all.order(created_at: :desc)
 
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id
-      @msg ="他のユーザーとDMしてみよう！"
+      @msg ="他のユーザーをフォローしよう！"
     else
        @currentUserEntry.each do |cu|
         @userEntry.each do |u|

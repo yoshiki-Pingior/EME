@@ -27,12 +27,12 @@ module RoomsHelper
   end
   
     # 相手ユーザー名を取得して表示するメソッド
-  def opponent_user_image(room)
+  def opponent_user_last_name(room)
     # 中間テーブルから相手ユーザーのデータを取得
     entry = room.entries.where.not(user_id: current_user)
     # 相手ユーザーの名前を取得
-    image = entry[0].user.image
+    last_name = entry[0].user.last_name
     # 名前を表示
-    tag.p attachment_image_tag:image, class: "dm_list__content__link__box__name"
+    tag.p "#{last_name}", class: "dm_list__content__link__box__name"
   end
 end
