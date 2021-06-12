@@ -1,3 +1,1 @@
-$("#favorites-buttons-<%= p.id %>").html("<%= j(render 'post_favorites/favorite', p: p) %>");
-
-alert('いいねが押せている！');
+$("#favorites_buttons_<%= @post.id %>").html("<%= j(render 'post_favorites/favorite', p: @post) %>");

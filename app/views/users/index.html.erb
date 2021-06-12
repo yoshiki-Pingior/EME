@@ -30,9 +30,10 @@
                       </p>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                      <span id="favorites-buttons-<%= p.id %>">
+                      <!--いいね機能-->
+                      <div id="favorites_buttons_<%= p.id %>">
                         <%= render 'post_favorites/favorite', p: p %>
-                      </span>
+                      </div>
                       <%= link_to "詳細画面", post_path(p.id) ,class: "btn btn-primary" %>
                       <small class="text-muted"><%= l p.created_at, format: :short %></small>
                     </div>

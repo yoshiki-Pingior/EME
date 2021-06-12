@@ -10,19 +10,9 @@
             <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
           <% end %>
           <!--いいね機能-->
-          <% if @post.favorited_by?(current_user) %>
-            <p>
-              <%= link_to post_post_favorites_path(@post), method: :delete do %>
-                💙 <%= @post.post_favorites.count %>いいね
-              <% end %>
-            </p>
-          <% else %>
-            <p>
-              <%= link_to post_post_favorites_path(@post), method: :post do %>
-                💙 <%= @post.post_favorites.count %>いいね
-              <% end %>
-            </p>
-          <% end %>
+          <div id="favorites_buttons_<%= @post.id %>">
+            <%= render 'post_favorites/favorite', p: @post %>
+          </div>
          <!--お気に入り機能-->
           <% if @post.bookmarked_by?(current_user) %>
             <p><%= link_to "ブックマークを外す", post_bookmarks_path(@post), method: :delete %></p>
