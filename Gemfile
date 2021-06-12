@@ -73,3 +73,8 @@ gem 'refile-mini_magick'         # 画像
 gem 'dotenv-rails'               # 環境変数
 
 gem 'font-awesome-rails'
+
+gem 'dotenv-rails'               # デプロイ
+group :production do
+  gem 'mysql2'
+end
