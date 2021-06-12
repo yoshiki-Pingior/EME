@@ -33,4 +33,13 @@ class Post < ApplicationRecord
       end
     end
   end
+  
+  def self.search(search)
+    if search
+      Post.joins(:tags).where(['post_title LIKE ? OR post_text LIKE ? OR tag_name LIKE?', "%#{search}%","%#{search}%","%#{search}%"])
+    else
+      Post.all
+    end
+  end
+  
 end

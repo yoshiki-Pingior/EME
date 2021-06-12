@@ -6,21 +6,23 @@
         <tr>
         <th></th>
         <th>名前</th>
-        <th colspan="4"></th>
+        <th colspan="3"></th>
       </tr>
       </thead>
 
       <tbody>
       <% @users.each do |user| %>
       <tr>
-        <td><%= attachment_image_tag user, :image, fallback: "no_image.jpg", size: "150x100" %></td>
-        <td><%= user.first_name %><%= user.last_name %></td>
+        <td>
+          <%= link_to user_path(user), class: "user_#{user.id}" do %>
+            <%= attachment_image_tag user, :image, fallback: "no_image.jpg", size: "150x100" %>
+          <% end %>
+        </td>
+        <td><%= user.last_name %><%= user.first_name %></td>
         <td>
           <%= link_to user_followings_path(user) do %>
             フォロー数:<%= user.followings.count %>
-          <% end %>
-        </td>
-        <td>
+          <% end %><br><br>
           <%= link_to user_followers_path(user) do %>
             フォロワー数: <%= user.followers.count %>
           <% end %>

@@ -1,56 +1,53 @@
 <h1>Users#index</h1>
 <div style="width:150px; height:100px; background:limegreen; border-radius:70px 0; text-align:center; padding-top:40px; margin-left: auto; margin-right: 100px">
-  <%= link_to "新規投稿", new_post_path,class: 'create-page' %>  
+  <%= link_to "新規投稿", new_post_path,class: 'create-page' %>
 </div>
 
-
-<div class="row align-items-md-stretch">
-  <%= render '/users/profile', user: @user %>
-
-  <div class="col-md-6">
-    <div class="h-100 p-5 text-black bg-light rounded-3">
-      <div class="texts-wrapper">
-        <div class="contents-title text-center">
-          <h3>フォローユーザーの投稿記事</h3>
-        <div class="row">
-          <% @users.each do |user| %>
-            <% @posts = Post.where(user_id: user.id).order("created_at DESC") %>
-            <% @posts.each do |post| %>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="card">
-                <%= attachment_image_tag post, :image,fallback: "no_image.jpg" %>
-                  <div class="card-body">
-                    <p class="card-title"><label>投稿タイトル:</label>  <%= post.post_title %></p>
-                    <p class="card-text"><%= post.post_text %></p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <% if post.favorited_by?(current_user) %>
-                      <p>
-                        <%= link_to post_post_favorites_path(post), method: :delete do %>
-                        💙 <%= post.post_favorites.count %>いいね
+<div class="col-md-12 offset-md-1">
+  <div class="row">
+    <%= render '/users/profile', user: @user %>
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-black bg-light rounded-3">
+        <div class="texts-wrapper">
+          <div class="contents-title text-center">
+            <h3>フォローユーザーの投稿記事</h3>
+            <div class="row">
+                <% @posts = Post.where(user_id: @follow_users).order(created_at: :desc) %>
+                <% @posts.each do |p| %>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card" style="width: 17rem; height: 28rem;">
+                    <div class="card-img-wrap">
+                      <%= link_to post_path(p.id) do %>
+                        <%= attachment_image_tag p, :image,fallback: "no_image.jpg", class: "card-image" %>
+                      <% end %>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-title"><%= p.post_title %></p>
+                      <p  class="card-text">
+                        <% p.tags.each do |t| %>
+                          <p style="display: inline-flex;">#<%= t.tag_name %></p>
                         <% end %>
                       </p>
-                    <% else %>
-                      <p>
-                        <%= link_to post_post_favorites_path(post), method: :post do %>
-                        💙 <%= post.post_favorites.count %>いいね
-                        <% end %>
-                      </p>
-                    <% end %>
-                    <%= link_to "詳細画面", post_path(post.id) ,class: "btn btn-primary"%>
-                    <small class="text-muted"><%= l post.created_at, format: :short %></small>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <!--いいね機能-->
+                      <div id="favorites_buttons_<%= p.id %>">
+                        <%= render 'post_favorites/favorite', p: p %>
+                      </div>
+                      <%= link_to "詳細画面", post_path(p.id) ,class: "btn btn-primary" %>
+                      <small class="text-muted"><%= l p.created_at, format: :short %></small>
+                    </div>
                   </div>
-              </div>
+                </div>
+                <% end %>
             </div>
-            <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
-  
- 
-  
+
+
+
 </div>

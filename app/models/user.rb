@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :posts
   attachment :image, destroy: false
 
@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy       #コメント機能
 
   has_many :bookmarks, dependent: :destroy           #お気に入り機能
-  
+
   has_many :direct_messages, dependent: :destroy     #チャット機能
   has_many :entries, dependent: :destroy             #チャット機能
   has_many :rooms, through: :entries
@@ -31,6 +31,16 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+
+  def self.search_user(search_user) #self.はUser.を意味する
+    if search_user
+      User.where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search_user}%","%#{search_user}%","%#{search_user}%","%#{search_user}%"])
+
+
+    else
+      User.all
+    end
   end
 
 end
