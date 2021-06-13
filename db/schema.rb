@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_05_114622) do
+ActiveRecord::Schema.define(version: 2021_06_05_071656) do
 
   create_table "boards", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,12 +19,11 @@ ActiveRecord::Schema.define(version: 2021_06_05_114622) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "board_id"
+    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "post_id"
-    t.index ["board_id"], name: "index_bookmarks_on_board_id"
-    t.index ["user_id", "board_id"], name: "index_bookmarks_on_user_id_and_board_id", unique: true
+    t.index ["post_id"], name: "index_bookmarks_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_bookmarks_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
@@ -106,8 +105,6 @@ ActiveRecord::Schema.define(version: 2021_06_05_114622) do
     t.string "first_name"
     t.string "last_name_kana"
     t.string "first_name_kana"
-    t.string "email"
-    t.string "encrypted_password"
     t.string "image_id"
     t.text "introduction"
     t.text "career"
@@ -118,9 +115,13 @@ ActiveRecord::Schema.define(version: 2021_06_05_114622) do
     t.text "free_space"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
