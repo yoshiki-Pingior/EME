@@ -6,7 +6,6 @@ class CreatePostBookmarks < ActiveRecord::Migration[5.2]
 
       t.timestamps
       
-      drop_table :post_bookmarks
     end
   end
 end
