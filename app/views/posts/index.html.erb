@@ -1,8 +1,4 @@
-<h1>Posts#index</h1>
-
-<h2>投稿一覧</h2>
-
- <div class="container pt-3">
+ <div class="container pt-5">
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
         <form>
@@ -23,7 +19,7 @@
       <div class="h-100 p-5 text-black bg-light rounded-3">
         <div class="texts-wrapper">
           <div class="contents-title text-center">
-            <h3>投稿記事一覧</h3>
+            <h2>投稿記事一覧</h2>
             <div class="row">
               <% @posts.each do |p| %>
                 <% if p.user_id == current_user.id %>
@@ -57,6 +53,7 @@
               <% end %>
             </div>
           </div>
+          <%= paginate @posts %>
         </div>
       </div>
     </div>

@@ -1,119 +1,7 @@
-<h1>Users#show</h1>
-<div>ユーザー情報詳細</div>
+<h2 class="text-center pt-5 pb-3">Profile</h2>
 
-<div class="row align-items-md-stretch">
-
-  <div class="col-md-3">
-    <div class="user_image">
-      <%= attachment_image_tag @user, :image,fallback: "no_image.jpg", size: "300x250"%>
-    </div>
-    <div>
-      <%= link_to user_followings_path(@user) do %>
-        フォロー数:<%= @user.followings.count %>
-      <% end %>
-    </div>
-    <div>
-      <%= link_to user_followers_path(@user) do %>
-        フォロワー数: <%= @user.followers.count %>
-      <% end %>
-    </div>
-    <div>
-      <% if current_user != @user %>
-        <% if current_user.following?(@user) %>
-          <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
-        <% else %>
-          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div>
-      <% if @user.id == current_user.id %>
-        <%= @msg %>
-      <% else %>
-        <% if @isRoom == true %>
-          <p><%= link_to 'DMへ', room_path(@roomId) %></p>
-        <% else %>
-          <%= form_for @room do |f| %>
-            <%= fields_for @entry do |e|%>
-              <% e.hidden_field :user_id, value: @user.id %>
-            <% end %>
-          <%= f.submit "DMを開始する"%>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-
-  </div>
-
-  <div class="col-md-7">
-    <table>
-      <tr>
-        <div class="form-group">
-          <th><label>フリガナ</label></th>
-            <td>
-              <%= @user.last_name_kana %>
-              <%= @user.first_name_kana %>
-            </td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-          <th><label>名前</label></th>
-            <td>
-              <%= @user.last_name %>
-              <%= @user.first_name %>
-            </td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-          <th><label>自己紹介</label></th>
-            <td><%= @user.introduction %></td>
-        </div>
-      </tr>
-
-      <tr>
-        <div class="form-group">
-          <th><label>経歴</label></th>
-            <td><%= @user.career %></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-          <th><label>趣味</label></th>
-            <td><%= @user.hobby %></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-          <th><label>興味のある分野</label></th>
-            <td><%= @user.interest_field %></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-          <th><label>休日の過ごし方</label></th>
-            <td><%= @user.holiday %></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-          <th><label>資格</label></th>
-            <td><%= @user.qualification %></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-          <th><label>自由欄</label></th>
-            <td><%= @user.free_space %></td>
-        </div>
-      </tr>
-    </table>
-    <% if @user.id == current_user.id %>
-      <%= link_to "編集する" ,edit_user_path %>
-    <% end %>
-  </div>
+<div class="col-md-6 offset-md-3">
+  <%= render '/users/show', user: @user %>
 </div>
 
 <div class="col-md-12 offset-md-3">
@@ -156,6 +44,7 @@
               <% end %>
             </div>
           </div>
+          <%= paginate @post %>
         </div>
       </div>
     </div>

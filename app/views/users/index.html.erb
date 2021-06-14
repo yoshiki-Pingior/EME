@@ -12,7 +12,7 @@
           <div class="contents-title text-center">
             <h3>フォローユーザーの投稿記事</h3>
             <div class="row">
-                <% @posts = Post.where(user_id: @follow_users).order(created_at: :desc) %>
+                <% @posts = Post.where(user_id: @follow_users).order(created_at: :desc).page(params[:page]).per(6) %>
                 <% @posts.each do |p| %>
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="card" style="width: 17rem; height: 28rem;">
@@ -42,6 +42,7 @@
                 <% end %>
             </div>
           </div>
+          <%= paginate @posts %>
         </div>
       </div>
     </div>

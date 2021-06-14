@@ -4,17 +4,19 @@ class UsersController < ApplicationController
     @user = current_user
     #フォローしているユーザー情報取得のため追加
     @follow_users = @user.followings
-    @posts = Post.all
+    @post = Post.all
   end
 
   def search_user
     @users = User.all
     @users = User.search_user(params[:search_user]).order(created_at: :desc)
+    @users = @users.page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @post = Post.all.order(created_at: :desc)
+    @post = Post.all.order(created_at: :desc).page(params[:page]).per(6)
+
 
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
