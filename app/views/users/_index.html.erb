@@ -19,14 +19,7 @@
           <% end %>
         </td>
         <td><%= user.last_name %><%= user.first_name %></td>
-        <td>
-          <%= link_to user_followings_path(user) do %>
-            フォロー数:<%= user.followings.count %>
-          <% end %><br><br>
-          <%= link_to user_followers_path(user) do %>
-            フォロワー数: <%= user.followers.count %>
-          <% end %>
-        </td>
+        
         <td>
           <% if current_user != user %>
             <% if current_user.following?(user) %>
@@ -41,5 +34,5 @@
       <% end %>
       </tbody>
     </table>
-  </>
+  </div>
 </div>
