@@ -31,10 +31,10 @@
                       <% end %>
                     </div>
                     <div class="card-body">
-                      <p class="card-title"><%= p.post_title %></p>
+                      <p class="card-title"><%= p.post_title.truncate(25) %></p>
                       <p  class="card-text">
                         <% p.tags.each do |t| %>
-                          <p style="display: inline-flex;">#<%= t.tag_name %></p>
+                          <p style="display: inline-flex;">#<%= t.tag_name.truncate(25) %></p>
                         <% end %>
                       </p>
                     </div>
