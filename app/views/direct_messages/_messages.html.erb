@@ -1,0 +1,24 @@
+<% if direct_messages.present? %>
+  <% direct_messages.each do |m| %>
+    <% if m.user_id==current_user.id %>
+      <div class="right-message">
+        <p><%= m.message %><br>
+          <%= m.created_at.strftime("%Y-%m-%d %H:%M")%></p>
+      </div>
+    <% else %>
+      <div class="left-message">
+        <div class="fukidashi">
+          <div class="faceicon">
+            <%= attachment_image_tag m.user, :image,fallback: "no_image.jpg", style:"width: 100%; height: auto; border-radius: 50%;"%>
+          </div>
+          <div class="chatting">
+            <div class="says">
+              <p><%= m.message %></p>
+                <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
