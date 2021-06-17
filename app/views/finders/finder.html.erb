@@ -1,0 +1,61 @@
+<div class="col-md-12 offset-md-3 mt-5">
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="tab-w">
+        <form>
+          <div class="input-group mb-3">
+            <%= form_with url: finder_path, method: :get, local: :true do |f| %>                    <!--検索機能-->
+            <%= text_field_tag :word, '', class: 'form-control', placeholder: "検索" %>
+            <%= f.submit "Search",class: "btn btn-primary" %>
+          <% end %>
+          </div>
+        </form>
+        <div class="tab-demo select">ユーザー</div>
+        <div class="tab-demo">投稿一覧</div>
+        <div class="tab-demo">お気に入り</div>
+      </div>
+
+      <div class="waku-demo">
+        <div class="content-demo">
+          <%= render '/finders/user', users: @users %>
+          <%= paginate @users %>
+        </div>
+        <div class="content-demo no-demo">
+          <%= render '/finders/post', posts: @posts %>
+        </div>
+        <div class="content-demo no-demo">
+          <%= render '/finders/bookmark', bookmarks: @bookmarks %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+ <!--jQuery呼び出し -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <!--タブを動かすスクリプト -->
+<script>
+jQuery(function($) {
+  $(function() {
+    $('.tab-demo').click(
+      function() {
+        var index = $('.tab-demo').index(this);
+        $('.content-demo').css('display','none');
+        $('.content-demo').eq(index).fadeIn(1000);
+        $('.tab-demo').removeClass('select');
+        $(this).addClass('select')
+      }
+    );
+    $(".tab-demo").hover(
+      function(){
+        $(this).addClass("hover")
+      },
+      function(){
+        $(this).removeClass("hover")
+      }
+    );
+  });
+});
+</script>

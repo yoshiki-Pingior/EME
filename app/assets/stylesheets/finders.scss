@@ -1,0 +1,32 @@
+// Place all the styles related to the Finders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tab-w { overflow: hidden; }
+.tab-demo {
+    width: 80px;
+    background: #ccc;
+    float: left;
+    list-style: none;
+    padding: 5px 0 3px 0;
+    margin-right: 2px;
+    text-align: center;
+    display: block;
+    color: #FFF;
+    border-radius: 12px 12px 0px 0px;
+}
+.tab-demo.hover { background: skyblue; cursor: pointer; }
+.select { background: blue; cursor: auto; }
+.select.hover { background: blue; cursor: auto; }
+.waku-demo {
+    
+    border: blue 2px solid;
+    background: #ccffff;
+    padding: 10px;
+}
+.content-demo {
+    border: #aaa 1px solid;
+    background: #fff;
+    padding: 10px;
+}
+.no-demo { display: none; }

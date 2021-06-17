@@ -1,18 +1,25 @@
-<body class="test-center">
-  <main class="form-top">
-    <form>
-      <h1 class="h3 mb-3 fw-normal">EME<br>(enhance mutual exchange)</h1>
-      <%= link_to "新規登録", new_user_registration_path, class: "w-100 btn btn-lg btn-info" %>
-      <%= link_to "ログイン", new_user_session_path, class: "w-100 btn btn-lg btn-success" %>
+<h2 class="text-center pt-5 pb-3">EME<br>(enhance mutual exchange)</h2>
+<div class="col-md-8 offset-md-3">
+  <div class="row">
+    <div class="col-md-4 offset-md-1 mb-4">
+      <%= link_to "新規登録", new_user_registration_path, class: "w-75 btn btn-lg btn-info" %>
+    </div>
 
-      <!--お問い合わせフォームは別日に調整-->
-      <button class="w-100 btn btn-lg btn-secondary" type="submit">お問い合わせ</button>
+    <div class="col-md-4">
+      <%= link_to "ログイン", new_user_session_path, class: "w-75 btn btn-lg btn-success" %>
+    </div>
 
-      <%= link_to "パスワードを忘れた方", new_user_password_path, class: "w-100 btn btn-lg btn-info" %>
+    <div class="col-md-4 offset-md-1 mb-5">
+      <%= link_to "お問い合わせ", "#", class: "w-75 btn btn-lg btn-secondary" %>
+    </div>
 
-      <div class="top-intro">サイト紹介文</div>
-    </form>
-  </main>
-</body>
+    <div class="col-md-4">
+      <%= link_to "パスワード再設定", new_user_password_path, class: "w-75 btn btn-lg btn-info" %>
+    </div>
 
+    <div class="col-md-9">
+      <div class="top-intro text-center">サイト紹介文</div>
+    </div>
 
+  </div>
+</div>

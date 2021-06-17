@@ -36,11 +36,13 @@ class User < ApplicationRecord
   def self.search_user(search_user) #self.はUser.を意味する
     if search_user
       User.where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search_user}%","%#{search_user}%","%#{search_user}%","%#{search_user}%"])
-
-
     else
       User.all
     end
+  end
+  
+  def self.looks(words)
+    @user = User.where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{words}%","%#{words}%","%#{words}%","%#{words}%"])
   end
 
 end

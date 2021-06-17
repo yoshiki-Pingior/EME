@@ -33,7 +33,7 @@ class Post < ApplicationRecord
       end
     end
   end
-  
+
   def self.search(search)
     if search
       Post.joins(:tags).where(['post_title LIKE ? OR post_text LIKE ? OR tag_name LIKE?', "%#{search}%","%#{search}%","%#{search}%"])
@@ -41,5 +41,9 @@ class Post < ApplicationRecord
       Post.all
     end
   end
-  
+
+  def self.looks(words)
+    @post = Post.joins(:tags).where(['post_title LIKE ? OR post_text LIKE ? OR tag_name LIKE?', "%#{words}%","%#{words}%","%#{words}%"])
+  end
+
 end
