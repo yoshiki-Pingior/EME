@@ -49,16 +49,16 @@
               <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
             </div>
           </tr>
-          <tr>
-            <div class="form-group">
-              <th></th>
-              <td></td>
-              <td class="actions"><%= f.submit "登録", class: "w-100 btn btn-lg btn-info" %></td>
-              <td></td>
-              <td><%= render "devise/shared/links" %></td>
-            </div>
-          </tr>
         </table>
+        <div class="col-md-7 offset-md-2 pt-4">
+          <%= f.submit "登録", class: "w-50 btn btn-lg btn-info" %>
+        </div>
     <% end %>
   </div>
+  <div class="text-center pt-4">
+    <p>--------------------------------------もしくは--------------------------------------</p>
+    <%= render "devise/shared/links" %>
+  </div>
 </div>
+
+

@@ -1,0 +1,36 @@
+<div class="h-100 p-5 text-black bg-light rounded-3">
+  <div class="texts-wrapper">
+    <div class="contents-title text-center">
+      <h3>ブックマーク一覧</h3>
+        <div class="row">
+          <% bookmarks.each do |b| %>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card" style="width: 17rem; height: 28rem;">
+              <div class="card-img-wrap">
+                <%= link_to post_path(b.post) do %>
+                  <%= attachment_image_tag b.post, :image,fallback: "no_image.jpg", class: "card-image" %>
+                <% end %>
+              </div>
+              <div class="card-body">
+                <p class="card-title"><%= b.post.post_title %></p>
+                <p  class="card-text">
+                  <% b.post.tags.each do |t| %>
+                    <p style="display: inline-flex;">#<%= t.tag_name %></p>
+                  <% end %>
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <!--いいね機能-->
+                <div id="favorites_buttons_<%= b.post.id %>">
+                  <%= render 'post_favorites/favorite', p: b.post %>
+                </div>
+                <%= link_to "詳細画面", post_path(b.post) ,class: "btn btn-primary" %>
+                <small class="text-muted"><%= l b.post.created_at, format: :short %></small>
+              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
