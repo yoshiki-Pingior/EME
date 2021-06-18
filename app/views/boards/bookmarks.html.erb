@@ -1,7 +1,7 @@
+<!-- 検索フォーム -->
 <div class="container mt-5">
   <div class="row">
     <div class="col-lg-10 offset-lg-1">
-       <!-- 検索フォーム -->
       <form>
         <div class="input-group mb-3">
           <%= form_tag(boards_bookmarks_path, :method => "get") do %>
@@ -10,7 +10,15 @@
           <% end %>
         </div>
       </form>
-    <!--お気に入り一覧-->
+    </div>
+  </div>
+</div>
+      
+<!--お気に入り一覧-->
+<div class="col-md-12 offset-md-1 mt-5">
+  <div class="row">
+    <%= render 'users/siderbar' %>
+    <div class="col-md-6">
       <div class="h-100 p-5 text-black bg-light rounded-3">
         <div class="texts-wrapper">
           <div class="contents-title text-center">
@@ -47,7 +55,6 @@
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </div>

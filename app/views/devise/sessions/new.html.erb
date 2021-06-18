@@ -8,14 +8,14 @@
           <div class="form-group">
             <th><label>Email</label></th>
             <td></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "30x5" %></td>
           </div>
         </tr>
         <tr>
           <div class="form-group">
             <th><label>Password</label></th>
             <td></td>
-            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password", :size => "30x5" %></td>
           </div>
         </tr>
       </table>

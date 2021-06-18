@@ -1,6 +1,12 @@
-<h2>Follow Users</h2>
-<% if @users.exists? %>
-  <%= render '/users/index', users: @users %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="col-md-12 offset-md-1 mt-5">
+  <div class="row">
+    <%= render 'users/siderbar' %>
+    <div class="col-md-6">
+      <% if @users.exists? %>
+        <%= render '/users/index', users: @users %>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
