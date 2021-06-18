@@ -21,3 +21,9 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery.jscroll.min.js
+
+$(function(){
+  $("#smooth-scroll").click(function() {
+    $("html,body").animate({scrollTop:0}, "1000");
+  });
+});

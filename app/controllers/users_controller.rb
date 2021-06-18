@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def search_user
+    @user = current_user
     @users = User.all
     @users = User.search_user(params[:search_user]).order(created_at: :desc)
     @users = @users.page(params[:page]).per(10)

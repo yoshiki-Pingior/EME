@@ -28,7 +28,9 @@
       </div>
 
       <div class="mt-3">
-        <%= link_to 'ユーザー情報', user_path(current_user.id), data: {"turbolinks" => false},class: 'text-light' %>
+        <%= link_to user_path(current_user.id), data: {"turbolinks" => false},class: 'text-light faa-parent animated-hover' do %>
+          <i class="fas fa-user mr-2 faa-wrench animated-hover"></i>ユーザー情報
+        <% end %>
       </div>
 
       <div class="mt-5">
