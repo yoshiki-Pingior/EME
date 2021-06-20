@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
       @direct_message = DirectMessage.new
       @entries = @room.entries
     else
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: rooms_path)
     end
   end
 
