@@ -1,7 +1,17 @@
 <h2 class="text-center pt-5 pb-3">Profile Edit</h2>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="col-md-6 offset-md-3">
-  <%= form_with model:current_user, local:true do |f| %>
+  <%= form_with model: @user, local:true do |f| %>
   <div class="row">
     <div class="col-md-5">
       <div class="user_image">
@@ -14,8 +24,8 @@
       <table>
         <tr height="80px">
           <th><label style="width: 120px;">フリガナ</label></th>
-            <td><%= f.text_field :last_name,autofocus: true, placeholder: "セイ" %></td>
-            <td><%= f.text_field :first_name,autofocus: true, placeholder: "メイ" %></td>
+            <td><%= f.text_field :last_name_kana,autofocus: true, placeholder: "セイ" %></td>
+            <td><%= f.text_field :first_name_kana,autofocus: true, placeholder: "メイ" %></td>
         </tr>
         <tr height="80px">
           <th><label style="width: 120px;">名前</label></th>

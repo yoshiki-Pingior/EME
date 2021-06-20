@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, {only: [:edit, :update]}
+  
   def index
     @user = current_user
     #フォローしているユーザー情報取得のため追加
@@ -50,7 +52,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -59,4 +61,12 @@ class UsersController < ApplicationController
   def user_params
      params.require(:user).permit(:email, :encrypted_password, :last_name, :first_name, :last_name_kana, :first_name_kana, :hobby, :image, :introduction, :career, :interest_field, :holiday, :qualification, :free_space)
   end
+  
+  def ensure_correct_user　　　　# 他のユーザーの編集画面に遷移できないように設定
+    if current_user.id != params[:id].to_i
+      flash[:notice] = "権限がありません"
+      redirect_to users_path
+    end
+  end
+  
 end

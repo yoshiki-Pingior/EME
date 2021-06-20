@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      post:
+    attributes:
+      post:
+        post_title: タイトル
+        post_text: 投稿内容
+        post_free_space: 自由欄
+        
+      user:
+        last_name: 苗字(姓)
+        first_name: 名前(名)
+        last_name_kana: 苗字(セイ)
+        first_name_kana: 名前(メイ)
+        introduction: 自己紹介文
+        career: 経歴
+        hobby: 趣味
+        interest_field: 興味のある分野
+        holiday: 休日
+        qualification: 資格
+        free_space: 自由欄

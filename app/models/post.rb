@@ -1,4 +1,8 @@
 class Post < ApplicationRecord
+  
+  validates :post_title, presence: true, length: { in: 1..100 }
+  validates :post_text, presence: true, length: { in: 1..1000 }
+  validates :post_free_space, length: { maximum: 500 }
 
   belongs_to :user
   attachment :image, destroy: false

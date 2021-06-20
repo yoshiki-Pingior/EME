@@ -74,6 +74,17 @@
     
     <div class="col-md-5 offset-md-4 mt-5">　　　　　　　　　　　　　　　　　　　　　　　　<!--コメント機能-->
       <div><コメント欄></div>
+      
+      <% if @error_comment.present? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <ul>
+            <% @error_comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
     </div>
 
     <div class="col-md-3 mt-5">

@@ -1,5 +1,15 @@
 <h2 class="text-center pt-5 pb-3">新規投稿</h2>
 
+<% if @post.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="col-md-6 offset-md-2">
   <%= form_with model:@post, url:'/posts', local:true do |f| %>
   <div class="row">

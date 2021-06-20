@@ -23,6 +23,7 @@ class PostsController < ApplicationController
       redirect_to posts_path
     else
       render 'new'
+      @post = Post.new(post_params)
     end
   end
 
@@ -39,7 +40,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:post_title, :post_text, :post_free_space, :image, :user_id)
   end
-  
+
   def tag_params       #追加
     params.require(:post).permit(:tag_name)
   end

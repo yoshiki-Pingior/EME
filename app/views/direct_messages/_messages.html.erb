@@ -2,7 +2,7 @@
   <% direct_messages.each do |m| %>
     <% if m.user_id==current_user.id %>
       <div class="right-message">
-        <p><%= m.message %><br>
+        <p style="word-break: break-all;"><%= m.message %><br>
           <%= m.created_at.strftime("%Y-%m-%d %H:%M")%></p>
       </div>
     <% else %>
@@ -13,7 +13,7 @@
           </div>
           <div class="chatting">
             <div class="says">
-              <p><%= m.message %></p>
+              <p style="word-break: break-all;"><%= m.message %></p>
                 <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
             </div>
           </div>
