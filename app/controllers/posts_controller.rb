@@ -23,7 +23,7 @@ class PostsController < ApplicationController
       redirect_to posts_path
     else
       render 'new'
-      @post = Post.new(post_params)
+      
     end
   end
 

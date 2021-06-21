@@ -75,29 +75,23 @@
     <div class="col-md-5 offset-md-4 mt-5">　　　　　　　　　　　　　　　　　　　　　　　　<!--コメント機能-->
       <div><コメント欄></div>
       
-      <% if @error_comment.present? %>
-        <div id="error_explanation" class="alert alert-danger">
-          <ul>
-            <% @error_comment.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <div id="comments_error">
+        <%= render 'layouts/errors', model: @post_comment %>                               <!--エラーメッセージ-->
+      </div>
       
     </div>
 
     <div class="col-md-3 mt-5">
-      <div id="comments_<%= @post.id %>">コメント件数:<%= @post.post_comments.count %></div>
+      <div id="comments_<%= @post.id %>">コメント件数:<%= @post.post_comments.count %></div>      <!--コメント件数-->
     </div>
     
     <div class="col-md-6 offset-md-4">
       <div id="post_comments_<%= @post.id %>">
-        <%= render '/post_comments/index', post: @post %>
+        <%= render '/post_comments/index', post: @post %>　　　　　　　　　　　　　　　　　　<!--コメント表示-->
       </div>
     </div>
 
-    <div class="col-md-8 offset-md-4">
+    <div class="col-md-8 offset-md-4">                                                        <!--コメント入力-->
       <%= form_with(model:[@post, @post_comment]) do |f| %>
         <%= f.text_area :comment,placeholder: "コメントをここに", :size => "73x2" %>
         <%= f.submit "送信する" %>
