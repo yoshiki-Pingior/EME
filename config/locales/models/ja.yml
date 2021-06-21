@@ -7,7 +7,7 @@ ja:
         post_title: タイトル
         post_text: 投稿内容
         post_free_space: 自由欄
-        
+
       user:
         last_name: 苗字(姓)
         first_name: 名前(名)
@@ -20,3 +20,6 @@ ja:
         holiday: 休日
         qualification: 資格
         free_space: 自由欄
+
+      post_comment:
+        comment: コメント

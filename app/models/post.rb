@@ -28,7 +28,6 @@ class Post < ApplicationRecord
       unless find_tag = Tag.find_by(tag_name: tag.downcase)
         begin
           self.tags.create!(tag_name: tag)
-
         rescue
           nil
         end
