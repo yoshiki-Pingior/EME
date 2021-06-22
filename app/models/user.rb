@@ -3,12 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   validates :last_name, presence: true, length: { in: 1..20 }
   validates :first_name, presence: true, length: { in: 1..20 }
   validates :last_name_kana, presence: true, length: { in: 1..20 }
   validates :first_name_kana, presence: true, length: { in: 1..20 }
-  validates :introduction, length: { maximum: 300 } 
+  validates :introduction, length: { maximum: 300 }
   validates :career, length: { maximum: 400 }
   validates :hobby, length: { maximum: 200 }
   validates :interest_field, length: { maximum: 200 }
@@ -52,9 +52,11 @@ class User < ApplicationRecord
       User.all
     end
   end
-  
+
   def self.looks(words)
     @user = User.where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{words}%","%#{words}%","%#{words}%","%#{words}%"])
   end
+
+
 
 end

@@ -27,3 +27,14 @@ $(function(){
     $("html,body").animate({scrollTop:0}, "1000");
   });
 });
+
+// 投稿画像のjs
+$(function(){
+    $(document).on('change', '.image-prev', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]); 
+});
+});

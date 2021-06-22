@@ -14,7 +14,11 @@
  *= require_self
  */
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700&display=swap');
 
+body {
+  font-family: 'Shippori Mincho B1', serif;
+}
 
 /*ページネーション自体のデザイン*/
 .pagination>li>a {
@@ -42,3 +46,44 @@
   display:block;
 }
 
+@media screen and (max-width: 480px) {
+  header {
+    width: 100%;
+  }
+
+  .test-center{
+    text-align: center;
+  }
+
+  .form-top{
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+  }
+
+  .jumbotron {
+    width: 100%;
+    background: url(top.jpg)center no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .sub-title{
+    width: 100%;
+    border: 3px solid;
+    border-radius: 8px;
+    padding: 30px;
+    font-weight:  bold;
+  }
+
+  .swiper-container {
+    width: 100%;
+  }
+
+  .image-size{
+    width: 100%;
+  }
+}
