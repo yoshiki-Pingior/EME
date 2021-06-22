@@ -95,8 +95,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.9.4)
-      devise (>= 4.7.1)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -134,6 +132,10 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -293,12 +295,12 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
-  devise-i18n
   dotenv-rails
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)
+  letter_opener
   listen (>= 3.0.5, < 3.2)
   mysql2
   puma (~> 3.11)

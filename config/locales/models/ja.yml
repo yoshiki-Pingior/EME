@@ -20,6 +20,8 @@ ja:
         holiday: 休日
         qualification: 資格
         free_space: 自由欄
+        email: メールアドレス
+        password: パスワード
 
       post_comment:
         comment: コメント

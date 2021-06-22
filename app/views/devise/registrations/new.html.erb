@@ -1,53 +1,42 @@
 <h2 class="text-center pt-5">新規登録</h2>
-
 <div>
-  <div class="col-md-6 offset-md-4">
+  <div class="col-md-5 offset-md-4">                                                                  <!--登録フォーム-->
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages", resource: resource %>                                         <!--エラーメッセージ-->
         <table>
           <tr>
-            <div class="form-group">
-              <th><label>名前</label></th>
-              <td>(姓)</td>
-              <td><%= f.text_field :last_name,autofocus: true %></td>
-              <td>(名)</td>
-              <td><%= f.text_field :first_name,autofocus: true %></td>
-            </div>
+            <th><label>名前</label></th>
+            <td>(姓)</td>
+            <td><%= f.text_field :last_name,autofocus: true %></td>
+            <td>(名)</td>
+            <td><%= f.text_field :first_name,autofocus: true %></td>
           </tr>
           <tr>
-            <div class="form-group">
-              <th><label>フリガナ</label></th>
-              <td>(セイ)</td>
-              <td><%= f.text_field :last_name_kana,autofocus: true %></td>
-              <td>(メイ)</td>
-              <td><%= f.text_field :first_name_kana,autofocus: true %></td>
-            </div>
+            <th><label>フリガナ</label></th>
+            <td>(セイ)</td>
+            <td><%= f.text_field :last_name_kana,autofocus: true %></td>
+            <td>(メイ)</td>
+            <td><%= f.text_field :first_name_kana,autofocus: true %></td>
           </tr>
           <tr>
-            <div class="form-group">
-              <th><label>Email</label></th>
-              <td></td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-            </div>
+            <th><label>Email</label></th>
+            <td></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
           </tr>
           <tr>
-            <div class="form-group">
-              <th><label>Password</label></th>
-              <td></td>
-              <td>
-                <%= f.password_field :password, autocomplete: "new-password" %>
-                  <% if @minimum_password_length %>
-                    <em>(<%= @minimum_password_length %> 文字以上)</em>
-                  <% end %><br />
-              </td>
-            </div>
+            <th><label>Password</label></th>
+            <td></td>
+            <td>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> 文字以上)</em>
+                <% end %><br />
+            </td>
           </tr>
           <tr>
-            <div class="form-group">
-              <th><label>Password(確認用)</label></th>
-              <td></td>
-              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-            </div>
+            <th><label>Password(確認用)</label></th>
+            <td></td>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
           </tr>
         </table>
         <div class="col-md-7 offset-md-2 pt-4">

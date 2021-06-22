@@ -3,17 +3,17 @@
 <div class="col-md-6 offset-md-2">
   <%= form_with model:@post, url:'/posts', local:true do |f| %>
   <div class="row">
-    <div class="col-md-6 offset-md-4">
+    <div class="col-md-6 offset-md-3">
       <%= render 'layouts/errors', model: @post %>                              <!--エラーメッセージ-->
       <table>
           <tr>
-            <td><%= f.text_field :post_title,placeholder: "タイトル", :size => "70" %></td>
+            <td><%= f.text_field :post_title,placeholder: "タイトル", :size => "81" %></td>
           </tr>
           <tr>
-            <td><%= f.text_field :tag_name ,placeholder: "ex)タグ 初めて=> #タグ #初めて" , :size => "70" %></td>
+            <td><%= f.text_field :tag_name ,placeholder: "ex)タグ 初めて=> #タグ #初めて" , :size => "81" %></td>
           </tr>
           <tr>
-            <td><%= f.text_area :post_text,placeholder: "内容", :size => "73x10" %></td>
+            <td><%= f.text_area :post_text,placeholder: "内容", :size => "84x10" %></td>
           </tr>
       </table>
     </div>
@@ -21,7 +21,10 @@
     <div class="col-md-5 offset-md-3">
       <table>
         <tr>
-          <td><%= f.attachment_field :image %></td>
+          <td>
+            <%= attachment_image_tag @post, :image, :fill, 300, 300, fallback: "no_image.jpg", size: "360x250" %>
+            <%= f.attachment_field :image, class: 'image-prev' %>
+          </td>
         </tr>
       </table>
     </div>

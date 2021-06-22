@@ -20,6 +20,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  
 }
 
 .sub-title{
@@ -27,33 +28,15 @@
   border-radius: 8px;
   padding: 30px;
   font-weight:  bold;
-}
-
-
-
-.main-container{
-  background-image: image-url('top.jpg');
-  background-size: cover;
-}
-
-.swiper-slide1{
-  background-image: image-url('sns.jpg');
-
-  width: 600px;
-}
-
-.swiper-slide2{
-  background-image: image-url('relationship.jpg');
-
-  width: 600px;
-}
-.swiper-slide3{
-  background-image: image-url('learn.jpg');
-
-  width: 600px;
+  background: rgba(255,255,255,0.5);
 }
 
 .swiper-container {
     width: 600px;
     height: 300px;
+}
+
+.image-size{
+  width: 600px;
+  height: 300px;
 }
