@@ -1,30 +1,32 @@
 <h2 class="text-center pt-5">新規登録</h2>
 <div>
-  <div class="col-md-5 offset-md-4">                                                                  <!--登録フォーム-->
+  <div class="col-md-5 offset-md-4">                                                                           <!--登録フォーム-->
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>                                         <!--エラーメッセージ-->
-        <table>
+        <div class="col-md-11">
           <tr>
-            <th><label>名前</label></th>
-            <td>(姓)</td>
-            <td><%= f.text_field :last_name,autofocus: true %></td>
-            <td>(名)</td>
-            <td><%= f.text_field :first_name,autofocus: true %></td>
+            <th><label class="col-md-2">名前</label></th>
+            <td><label class="col-md-1">姓</label><%= f.text_field :last_name,autofocus: true %></td>
+            <td><label class="col-md-1">名</label><%= f.text_field :first_name,autofocus: true %></td>
           </tr>
+        </div>
+        <div class="col-md-11">
           <tr>
-            <th><label>フリガナ</label></th>
-            <td>(セイ)</td>
-            <td><%= f.text_field :last_name_kana,autofocus: true %></td>
-            <td>(メイ)</td>
-            <td><%= f.text_field :first_name_kana,autofocus: true %></td>
+            <th><label class="col-md-2">フリガナ</label></th>
+            <td><label class="col-md-1">ｾｲ</label><%= f.text_field :last_name_kana,autofocus: true %></td>
+            <td><label class="col-md-1">ﾒｲ</label><%= f.text_field :first_name_kana,autofocus: true %></td>
           </tr>
+        </div>
+        <div class="col-md-11">
           <tr>
-            <th><label>Email</label></th>
+            <th><label class="col-md-3">Email</label></th>
             <td></td>
             <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
           </tr>
+        </div>
+        <div class="col-md-11">
           <tr>
-            <th><label>Password</label></th>
+            <th><label class="col-md-3">Password</label></th>
             <td></td>
             <td>
               <%= f.password_field :password, autocomplete: "new-password" %>
@@ -33,21 +35,21 @@
                 <% end %><br />
             </td>
           </tr>
+        </div>
+        <div class="col-md-11">
           <tr>
-            <th><label>Password(確認用)</label></th>
+            <th><label class="col-md-3">Password(確認)</label></th>
             <td></td>
             <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
           </tr>
-        </table>
-        <div class="col-md-7 offset-md-2 pt-4">
+        </div>
+        <div class="col-md-7 offset-md-3 pt-4">
           <%= f.submit "登録", class: "w-50 btn btn-lg btn-info" %>
         </div>
     <% end %>
   </div>
   <div class="text-center pt-4">
-    <p>--------------------------------------もしくは--------------------------------------</p>
+    <p>----------------------------もしくは------------------------------</p>
     <%= render "devise/shared/links" %>
   </div>
 </div>
-
-
