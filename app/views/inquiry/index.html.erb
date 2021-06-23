@@ -9,29 +9,28 @@
       </ul>
     </div>
   <% end %>
-  
-  <div class="col-md-4 offset-md-4">
+
+  <div class="col-md-5 offset-md-4">
     <%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
-    <table>
+    <div class="col-md-12">
       <tr>
-        <div class="form-group">
-          <th>名前<label>(必須)</label></th>
-          <td><%= f.text_field :name, autocomplete: "お名前", :size => "40x5" %></td>
-        </div>
+        <th><label class="col-md-3">名前(必須)</label></th>
+        <td><%= f.text_field :name, autocomplete: "お名前", :size => "35" %></td>
       </tr>
+    </div>
+    <div class="col-md-12">
       <tr>
-        <div class="form-group">
-          <th>メールアドレス<label>(必須)</label></th>
-          <td><%= f.text_field :email, autocomplete: "メールアドレス", :size => "40x5" %></td>
-        </div>
+        <th><label class="col-md-3">Email(必須)</label></th>
+        <td><%= f.text_field :email, autocomplete: "メールアドレス", :size => "35" %></td>
       </tr>
+    </div>
+    <div class="col-md-12">
       <tr>
-        <div class="form-group">
-          <th>お問い合わせ内容<label></label></th>
-          <td><%= f.text_area :message, autocomplete: "例）ログインできない", :size => "43x6" %></td>
-        </div>
+        <th><label class="col-md-3">お問い合わせ内容</label></th>
+        <td><%= f.text_area :message, placeholder: "例）ログインできない", :size => "37x6" %></td>
       </tr>
-    </table>
+    </div>
+
     <div class="text-center pt-4">
       <%= f.submit '確認', class: 'w-50 btn btn-primary' %>
     </div>

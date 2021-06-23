@@ -7,16 +7,20 @@
         <%= link_to "新規登録", new_user_registration_path, class: "w-75 btn btn-lg btn-primary" %>
       </div>
 <!--ログインボタン-->
-      <div class="col-md-4">
+      <div class="col-md-4 mb-4">
         <%= link_to "ログイン", new_user_session_path, class: "w-75 btn btn-lg btn-success" %>
       </div>
 <!--お問い合わせボタン-->
-      <div class="col-md-4 offset-md-1 mb-5">
+      <div class="col-md-4 offset-md-1 mb-4">
         <%= link_to "お問い合わせ", inquiry_path, class: "w-75 btn btn-lg btn-secondary" %>
       </div>
 <!--パスワード再設定ボタン-->
-      <div class="col-md-4">
+      <div class="col-md-4 mb-4">
         <%= link_to "パスワード再設定", new_user_password_path, class: "w-75 btn btn-lg btn-info" %>
+      </div>
+<!--ゲストログインボタン-->
+      <div class="col-md-4 offset-md-3 mb-4">
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "w-75 btn btn-lg btn-warning" %>
       </div>
 <!--概要-->
       <div class="col-md-9">
@@ -32,7 +36,6 @@
 <!--イメージ画像-->
       <div class="col-md-9 mt-3">
         <div class="swiper-container">
-            <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <div class="swiper-slide"><%= image_tag 'sns.jpg', class: "image-size" %></div>
             <div class="swiper-slide"><%= image_tag 'relationship.jpg', class: "image-size"  %></div>

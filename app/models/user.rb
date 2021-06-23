@@ -56,7 +56,16 @@ class User < ApplicationRecord
   def self.looks(words)
     @user = User.where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{words}%","%#{words}%","%#{words}%","%#{words}%"])
   end
-
-
+  
+  # ゲストユーザーでログインできるように設定
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64  　          # パスワードはランダム設定
+      user.last_name = "てすと"
+      user.first_name = "げすと"
+      user.last_name_kana = "テスト"
+      user.first_name_kana = "ゲスト"
+    end
+  end
 
 end

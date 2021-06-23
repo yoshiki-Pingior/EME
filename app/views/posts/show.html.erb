@@ -1,34 +1,34 @@
 <h2 class="text-center pt-5 pb-3">投稿詳細</h2>
-
 <div class="col-md-6 offset-md-2">
   <div class="row">
-    
-    <div class="col-md-1 offset-md-4">                                                      <!--お気に入り機能-->
+  <!--お気に入り機能-->
+    <div class="col-md-1 offset-md-4">                                                      
       <div id="bookmarks_buttons_<%= @post.id %>">
         <%= render 'bookmarks/bookmarks_button', post: @post %>
       </div>
     </div>
-    
-    <div class="col-md-6">                                                                  <!--いいね機能-->
+  <!--いいね機能-->
+    <div class="col-md-6">                                                                  
       <div id="favorites_buttons_<%= @post.id %>">
         <%= render 'post_favorites/favorite', p: @post %>
       </div>
     </div>
-    
-    <div class="col-md-1">                                                                  <!--削除機能-->
+  <!--削除機能-->  
+    <div class="col-md-1">                                                                  
       <% if user_signed_in? && current_user.id == @post.user_id %>
         <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
           <i class="fas fa-trash-alt fa-2x"></i>
         <% end %>
       <% end %>
     </div>
-    <div class="col-md-2 offset-md-11">                                                     <!--作成日時-->
+  <!--作成日時-->
+    <div class="col-md-2 offset-md-11">                                                     
       <%= l @post.created_at, format: :short %>
     </div>
-
+  <!--投稿者名-->
     <div class="col-md-8 offset-md-4 mt-4">
       <table>
-        <tr>                                                                                <!--投稿者名-->
+        <tr>                                                                                
           <th><label style="width: 120px;">投稿者</label></th>
           <td style="word-break: break-all;">
             <%= link_to user_path(@post.user.id) do %>
@@ -36,11 +36,13 @@
             <% end %>
           </td>
         </tr>
-        <tr>                                                                                <!--投稿タイトル-->
+  <!--投稿タイトル-->
+        <tr>                                                                                
           <th><label style="width: 120px;">タイトル</label></th>
           <td style="word-break: break-all;"><%= @post.post_title %></td>
         </tr>
-        <tr>                                                                                <!--投稿タグ-->
+  <!--投稿タグ-->
+        <tr>                                                                                
           <th><label style="width: 120px;">タグ</label></th>
           <td style="word-break: break-all;">
             <% @post.tags.each do |tag| %>
@@ -48,55 +50,54 @@
             <% end %>
           </td>
         </tr>
-        <tr>                                                                                <!--投稿内容-->
+  <!--投稿内容-->
+        <tr>                                                                                
           <th><label style="width: 120px;">内容</label></th>
           <td style="word-break: break-all;">><%= @post.post_text %></td>
         </tr>
       </table>
     </div>
-
+  <!--投稿画像-->
     <div class="col-md-4 offset-md-4 mt-5">
       <table>
-        <tr>                                                                                <!--投稿画像-->
+        <tr>                                                                                
           <td><%= attachment_image_tag @post, :image,fallback: "no_image.jpg", size:"300x250" %></td>
         </tr>
       </table>
     </div>
-
+  <!--自由欄-->
     <div class="col-md-4 mt-5">
-      <table>                                                                               <!--自由欄-->
+      <table>                                                                               
         <th><label style="width: 120px;">自由欄</label></th>
         <tr>
           <td style="word-break: break-all;"><%= @post.post_free_space %></td>
         </tr>
       </table>
     </div>
-    
-    <div class="col-md-5 offset-md-4 mt-5">　　　　　　　　　　　　　　　　　　　　　　　　<!--コメント機能-->
+  <!--コメント機能-->
+    <div class="col-md-5 offset-md-4 mt-5">　　　　　　　　　　　　　　　　　　　　　　　　
       <div><コメント欄></div>
-      
+  <!--エラーメッセージ-->
       <div id="comments_error">
-        <%= render 'layouts/errors', model: @post_comment %>                               <!--エラーメッセージ-->
+        <%= render 'layouts/errors', model: @post_comment %>                               
       </div>
-      
     </div>
-
+  <!--コメント件数-->
     <div class="col-md-3 mt-5">
-      <div id="comments_<%= @post.id %>">コメント件数:<%= @post.post_comments.count %></div>      <!--コメント件数-->
+      <div id="comments_<%= @post.id %>">コメント件数:<%= @post.post_comments.count %></div>      
     </div>
-    
+  <!--コメント表示-->
     <div class="col-md-6 offset-md-4">
       <div id="post_comments_<%= @post.id %>">
-        <%= render '/post_comments/index', post: @post %>　　　　　　　　　　　　　　　　　　<!--コメント表示-->
+        <%= render '/post_comments/index', post: @post %>　　　　　　　　　　　　　　　　　　
       </div>
     </div>
-
-    <div class="col-md-8 offset-md-4">                                                        <!--コメント入力-->
+  <!--コメント入力-->
+    <div class="col-md-8 offset-md-4">                                                        
       <%= form_with(model:[@post, @post_comment]) do |f| %>
-        <%= f.text_area :comment,placeholder: "コメントをここに", :size => "73x2" %>
+        <%= f.text_area :comment,placeholder: "コメントをここに", :size => "35x2" %>
         <%= f.submit "送信する" %>
       <% end %>
     </div>
-
   </div>
 </div>
