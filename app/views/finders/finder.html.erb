@@ -1,11 +1,11 @@
 <div class="col-md-12 offset-md-3 mt-5">
   <div class="row">
     <div class="col-md-6">
-
+<!--検索機能-->
       <div class="tab-w">
         <form>
           <div class="input-group mb-3">
-            <%= form_with url: finder_path, method: :get, local: :true do |f| %>                    <!--検索機能-->
+            <%= form_with url: finder_path, method: :get, local: :true do |f| %>
             <%= text_field_tag :word, '', class: 'form-control', placeholder: "検索" %>
             <%= f.submit "Search",class: "btn btn-primary" %>
           <% end %>
@@ -15,20 +15,21 @@
         <div class="tab-demo">投稿一覧</div>
         <div class="tab-demo">お気に入り</div>
       </div>
-
       <div class="waku-demo">
+  <!--ユーザー検索機能-->
         <div class="content-demo">
           <%= render '/finders/user', users: @users %>
           <%= paginate @users %>
         </div>
+  <!--投稿記事検索機能-->
         <div class="content-demo no-demo">
           <%= render '/finders/post', posts: @posts %>
         </div>
+  <!--お気に入り記事検索機能-->
         <div class="content-demo no-demo">
           <%= render '/finders/bookmark', bookmarks: @bookmarks %>
         </div>
       </div>
-
     </div>
   </div>
 </div>

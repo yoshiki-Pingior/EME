@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-5">
-
+<!--ユーザー画像-->
     <div class="user_image">
       <%= attachment_image_tag user, :image,fallback: "no_image.jpg", size: "300x250",style: "border-radius: 50%;" %>
     </div>
-
+<!--フォロー＆フォロワー-->
     <div style="display: flex;">
       <div style="margin: 10px 50px 0 0 ;">
         <%= link_to user_followings_path(user) do %>
@@ -17,7 +17,7 @@
         <% end %>
       </div>
     </div>
-
+<!--チャット機能-->
     <div style="display: flex;">
       <div style="margin: 10px 20px 0 0 ;" id="follow_buttons_<%= user.id %>">
         <% if current_user != user %>
@@ -42,39 +42,41 @@
       </div>
     </div>
   </div>
-
-
-  <div class="col-md-6">
-    <table>
-      <tr height="80px">
-        <th><label style="width: 100px;">フリガナ</label></th>
-          <td style="word-break: break-all;">
-            <%= user.last_name_kana %>
-            <%= user.first_name_kana %>
-          </td>
-      </tr>
-      <tr height="80px">
-        <th><label>名前</label></th>
-          <td style="word-break: break-all;">
-            <%= user.last_name %>
-            <%= user.first_name %>
-          </td>
-      </tr>
-      <tr height="80px">
-        <th><label>自己紹介</label></th>
-          <td style="word-break: break-all;"><%= user.introduction %></td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="col-md-1">
-    <% if user.id == current_user.id %>
-      <%= link_to edit_user_path do %>
-        <i class="fas fa-user-edit fa-2x"></i>
+<!--ユーザー情報-->
+  <div class="col-md-7">
+<!--ユーザー編集-->
+    <div class="col-md-1 offset-md-10 mt-3">
+      <% if user.id == current_user.id %>
+        <%= link_to edit_user_path do %>
+          <i class="fas fa-user-edit fa-2x"></i>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+<!--ユーザー情報（名前＆自己紹介）-->
+    <div class="col-md-11">
+      <table>
+        <tr height="80px">
+          <th><label style="width: 100px;">フリガナ</label></th>
+            <td style="word-break: break-all;">
+              <%= user.last_name_kana %>
+              <%= user.first_name_kana %>
+            </td>
+        </tr>
+        <tr height="80px">
+          <th><label style="width: 100px;">名前</label></th>
+            <td style="word-break: break-all;">
+              <%= user.last_name %>
+              <%= user.first_name %>
+            </td>
+        </tr>
+        <tr height="80px">
+          <th><label style="width: 100px;">自己紹介</label></th>
+            <td style="word-break: break-all;"><%= user.introduction %></td>
+        </tr>
+      </table>
+    </div>
   </div>
-
+<!--ユーザー情報（経歴）-->
   <div class="col-md-5">
     <table>
       <tr>
@@ -85,7 +87,7 @@
       </tr>
     </table>
   </div>
-
+<!--ユーザー情報（趣味＆分野＆休日＆資格＆自由欄）-->
   <div class="col-md-6">
     <table>
       <tr height="40px">
@@ -109,5 +111,5 @@
           <td style="word-break: break-all;"><%= user.free_space %></td>
       </tr>
     </table>
-    </div>
   </div>
+</div>

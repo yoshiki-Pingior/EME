@@ -1,20 +1,20 @@
-
 <div class="col-md-12 offset-md-4">
-<div class="row">
-  <div class="col-sm-4">
-<% @rooms.each do |room|%>
-<div class="card bg-transparent border-success" style="margin-top: 40px;">
-  <div class="card-header bg-transparent border-success">
-    <div class="d-flex align-items-center"><%= opponent_user_last_name(room) %><%= opponent_user(room) %>とのチャット</div>
+  <div class="row">
+    <div class="col-sm-4">
+      <% @rooms.each do |room|%>
+        <div class="card bg-transparent border-success" style="margin-top: 40px;">
+          <div class="card-header bg-transparent border-success">
+            <div class="d-flex align-items-center">
+              <%= opponent_user_last_name(room) %><%= opponent_user(room) %>とのチャット
+            </div>
+          </div>
+          <div class="card-body">
+            <%= link_to room_path(room), class: "dm_list__content__lin" do %>
+              <h5 class="card-title "><%= most_new_direct_message_preview(room) %></h5>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="card-body">
-    <%= link_to room_path(room), class: "dm_list__content__lin" do %>
-      <h5 class="card-title "><%= most_new_direct_message_preview(room) %></h5>
-    <% end %>
-  </div>
-</div>
-<% end %>
-
-</div>
-</div>
 </div>

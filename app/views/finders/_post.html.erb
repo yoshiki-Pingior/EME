@@ -1,40 +1,37 @@
-      <div class="h-100 p-5 text-black bg-light rounded-3">
-        <div class="texts-wrapper">
-          <div class="contents-title text-center">
-            <h2>投稿記事一覧</h2>
-            <div class="row">
-              <% @posts.each do |p| %>
-                
-                <div class="col-12 col-xs-9 col-md-6 col-lg-4">
-                  <div class="card" style="width: 17rem; height: 28rem;">
-                    <div class="card-img-wrap">
-                      <%= link_to post_path(p.id)  do %>
-                        <%= attachment_image_tag p, :image,fallback: "no_image.jpg", class: "card-image" %>
-                      <% end %>
-                    </div>
-                    <div class="card-body">
-                      <p class="card-title"><%= p.post_title.truncate(25) %></p>
-                      <p  class="card-text">
-                        <% p.tags.each do |t| %>
-                          <p style="display: inline-flex;">#<%= t.tag_name.truncate(25) %></p>
-                        <% end %>
-                      </p>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <!--いいね機能-->
-                      <div id="favorites_buttons_<%= p.id %>">
-                        <%= render 'post_favorites/favorite', p: p %>
-                      </div>
-                      
-                      <%= link_to "詳細画面", post_path(p.id) ,class: "btn btn-primary" %>
-                      <small class="text-muted"><%= l p.created_at, format: :short %></small>
-                    </div>
-                  </div>
+<div class="h-100 p-5 text-black bg-light rounded-3">
+  <div class="texts-wrapper">
+    <div class="contents-title text-center">
+      <h2>投稿記事一覧</h2>
+      <div class="row">
+        <% @posts.each do |p| %>
+          <div class="col-12 col-xs-9 col-md-6 col-lg-4">
+            <div class="card" style="width: 17rem; height: 28rem;">
+              <div class="card-img-wrap">
+                <%= link_to post_path(p.id)  do %>
+                  <%= attachment_image_tag p, :image,fallback: "no_image.jpg", class: "card-image" %>
+                <% end %>
+              </div>
+              <div class="card-body">
+                <p class="card-title"><%= p.post_title.truncate(25) %></p>
+                <p  class="card-text">
+                  <% p.tags.each do |t| %>
+                    <p style="display: inline-flex;">#<%= t.tag_name.truncate(25) %></p>
+                  <% end %>
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <!--いいね機能-->
+                <div id="favorites_buttons_<%= p.id %>">
+                  <%= render 'post_favorites/favorite', p: p %>
                 </div>
-                
-              <% end %>
+                <%= link_to "詳細画面", post_path(p.id) ,class: "btn btn-primary" %>
+                <small class="text-muted"><%= l p.created_at, format: :short %></small>
+              </div>
             </div>
           </div>
-          <%= paginate @posts %>
-        </div>
+        <% end %>
       </div>
+    </div>
+    <%= paginate @posts %>
+  </div>
+</div>

@@ -1,18 +1,19 @@
- <div class="container pt-5">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1">
-        <form>
-          <div class="input-group mb-3">
-            <%= form_tag(posts_path, :method => "get") do %>
-            <%= text_field_tag :search, '', class: 'form-control', placeholder: "投稿記事検索" %>
-            <%= submit_tag "Search" ,:post_title => nil ,:post_text => nil ,class: "btn btn-primary",value: "検索" %> 
-            <% end %> 
-          </div>
-        </form>
-      </div>
+ <!-- 投稿記事検索フォーム -->
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <form>
+        <div class="input-group mb-3">
+          <%= form_tag(posts_path, :method => "get") do %>
+          <%= text_field_tag :search, '', class: 'form-control', placeholder: "投稿記事検索" %>
+          <%= submit_tag "Search" ,:post_title => nil ,:post_text => nil ,class: "btn btn-primary",value: "検索" %> 
+          <% end %> 
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>
+<!-- 投稿記事一覧 -->
 <div class="col-md-12 offset-md-1 mt-5">
   <div class="row">
     <%= render 'users/siderbar' %>
@@ -40,11 +41,9 @@
                       </p>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                      <!--いいね機能-->
-                      <div id="favorites_buttons_<%= p.id %>">
+<!--いいね機能-->     <div id="favorites_buttons_<%= p.id %>">
                         <%= render 'post_favorites/favorite', p: p %>
                       </div>
-                      
                       <%= link_to "詳細画面", post_path(p.id) ,class: "btn btn-primary" %>
                       <small class="text-muted"><%= l p.created_at, format: :short %></small>
                     </div>

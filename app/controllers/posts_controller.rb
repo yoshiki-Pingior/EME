@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @user = current_user
     @posts = Post.all
@@ -23,7 +25,6 @@ class PostsController < ApplicationController
       redirect_to posts_path
     else
       render 'new'
-      
     end
   end
 
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:post_title, :post_text, :post_free_space, :image, :user_id)
   end
 
-  def tag_params       #追加
+  def tag_params       
     params.require(:post).permit(:tag_name)
   end
 end

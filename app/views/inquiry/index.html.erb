@@ -1,4 +1,5 @@
 <h2 class="text-center pt-5">お問い合わせ</h2>
+<!--エラーメッセージ-->
   <% if @inquiry.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <strong>入力内容にエラーがあります</strong>
@@ -9,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<!--入力フォーム-->
   <div class="col-md-5 offset-md-4">
     <%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
     <div class="col-md-12">
@@ -30,7 +31,6 @@
         <td><%= f.text_area :message, placeholder: "例）ログインできない", :size => "37x6" %></td>
       </tr>
     </div>
-
     <div class="text-center pt-4">
       <%= f.submit '確認', class: 'w-50 btn btn-primary' %>
     </div>

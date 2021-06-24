@@ -4,13 +4,12 @@
   <% end %>
   <%= "のチャット" %>
 </h2>
+<!-- チャット入力画面 -->
   <div class="col-md-4 offset-md-4">
     <div class="chat">
-
       <div id="direct_messages">
         <%= render '/direct_messages/messages', direct_messages: @direct_messages %>
       </div>
-
     </div>
     <div class="posts-form">
       <%= form_with(model: [@direct_message]) do |f| %>

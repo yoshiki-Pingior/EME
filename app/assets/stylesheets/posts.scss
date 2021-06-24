@@ -24,3 +24,36 @@
   border: 1px solid #ccc;
   background-size: cover;
 }
+
+.post_title input,
+.post_tag input {
+  width: 635px;
+  height: 30px;
+}
+
+.post_text textarea{
+  width: 635px;
+  height: 200px;
+}
+
+.post_free_space textarea{
+  width: 245px;
+  height: 245px;
+}
+
+@media screen and (max-width: 480px) {
+  .post_title input,
+  .post_tag input,{
+    width: 330px;
+    height: 30px;
+  }
+
+  .post_text textarea{
+    width: 330px;
+    height: 250px;
+  }
+  .post_free_space textarea{
+    width: 330px;
+    height: 250px;
+  }
+}
