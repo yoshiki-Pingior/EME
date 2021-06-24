@@ -4,11 +4,11 @@
           <%= link_to users_path, data: {"turbolinks" => false},class: 'text-light' do %>
             <span style="font-size: 50px; ">EME</span>
           <% end %>
-          
+
         <% else %>
           <a class="navbar-brand" href="/"><span style="font-size: 50px">EME</span></a>
         <% end %>
-        
+
         <nav>
           <ul class="nav navbar-nav navbar-right ml-auto bg p-4">
             <% if user_signed_in? %>

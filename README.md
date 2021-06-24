@@ -89,5 +89,3 @@ IDE：Cloud9<br>
 https://fontfree.me/ （フォントの変更に使用）<br>
 https://icooon-mono.com/ （サイトのアイコンに使用）<br>
 https://www.pakutaso.com/ （写真素材に使用）<br>
-https://o-dan.net/ja/　 （写真素材に使用）<br>
-https://morguefile.com/ （写真素材に使用）<br>

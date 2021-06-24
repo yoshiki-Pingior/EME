@@ -5,3 +5,67 @@
 .pagination {
   justify-content: center;
 }
+
+.user_intro textarea {
+  width: 400px;
+  height: 125px;
+  word-break: break-all;
+}
+
+.user_career textarea {
+  width: 340px;
+  height: 290px;
+  word-break: break-all;
+}
+
+.user_hobby input,
+.user_field input,
+.user_holiday input,
+.user_qualification input{
+  width: 395px;
+  height: 30px;
+  word-break: break-all;
+}
+
+.user_free_space textarea{
+  width: 395px;
+  height: 125px;
+  word-break: break-all;
+}
+
+
+@media screen and (max-width: 480px) {
+.user_intro textarea {
+  width: 215px;
+  height: 250px;
+  word-break: break-all;
+}
+
+.user_career textarea {
+  width: 300px;
+  height: 290px;
+  word-break: break-all;
+}
+
+.user_hobby input,
+.user_field input,
+.user_holiday input,
+.user_qualification input{
+  width: 220px;
+  height: 30px;
+  word-break: break-all;
+}
+
+.user_free_space textarea{
+  width: 220px;
+  height: 125px;
+  word-break: break-all;
+}
+
+.user_name input,
+.user_name_kana input{
+  width: 105px;
+  height: 30px;
+}
+
+}

@@ -1,46 +1,46 @@
 <h2 class="text-center pt-5 pb-3">新規投稿</h2>
-
 <div class="col-md-6 offset-md-2">
   <%= form_with model:@post, url:'/posts', local:true do |f| %>
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <%= render 'layouts/errors', model: @post %>                              <!--エラーメッセージ-->
+<!--エラーメッセージ-->
+      <%= render 'layouts/errors', model: @post %>
+<!--新規投稿記事内容（タイトル＆タグ＆内容）-->
       <table>
           <tr>
-            <td><%= f.text_field :post_title,placeholder: "タイトル", :size => "81" %></td>
+            <td class="post_title"><%= f.text_field :post_title,placeholder: "タイトル" %></td>
           </tr>
           <tr>
-            <td><%= f.text_field :tag_name ,placeholder: "ex)タグ 初めて=> #タグ #初めて" , :size => "81" %></td>
+            <td class="post_tag"><%= f.text_field :tag_name ,placeholder: "ex)タグ 初めて=> #タグ #初めて" %></td>
           </tr>
           <tr>
-            <td><%= f.text_area :post_text,placeholder: "内容", :size => "84x10" %></td>
+            <td class="post_text"><%= f.text_area :post_text,placeholder: "内容" %></td>
           </tr>
       </table>
     </div>
-
+<!--新規投稿記事内容（写真）-->
     <div class="col-md-5 offset-md-3">
       <table>
         <tr>
           <td>
-            <%= attachment_image_tag @post, :image, :fill, 300, 300, fallback: "no_image.jpg", size: "360x250" %>
+            <%= attachment_image_tag @post, :image, fallback: "no_image.jpg", size: "330x230" %>
             <%= f.attachment_field :image, class: 'image-prev' %>
           </td>
         </tr>
       </table>
     </div>
-
+<!--新規投稿記事内容（自由欄）-->
     <div class="col-md-4">
       <table>
         <tr>
-          <td><%= f.text_area :post_free_space,placeholder: "free_space", :size => "28x10" %></td>
+          <td class="post_free_space"><%= f.text_area :post_free_space,placeholder: "free_space" %></td>
         </tr>
       </table>
     </div>
-
+<!--新規投稿ボタン-->
     <div class="offset-md-10">
       <%= f.submit '新規作成',class: 'btn btn-success' %>
     </div>
-
   </div>
   <% end %>
 </div>

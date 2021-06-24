@@ -7,8 +7,7 @@ class PostCommentsController < ApplicationController
     @post_comment.post_id = @post.id
     unless @post_comment.save
     # redirect_to request.referer
-
-      render 'error'
+      render 'error'               #入力にエラーが生じた際に表示するエラー内容
     end
   end
 
@@ -16,7 +15,6 @@ class PostCommentsController < ApplicationController
   end
 
   private
-
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end
