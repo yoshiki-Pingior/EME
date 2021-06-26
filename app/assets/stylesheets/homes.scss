@@ -15,12 +15,12 @@
 }
 
 .jumbotron {
-  background: url(top.jpg)center no-repeat;
+  background: image-url("top.jpg")center no-repeat;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
+
 }
 
 .sub-title{
