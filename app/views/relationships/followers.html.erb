@@ -1,7 +1,9 @@
-<div class="col-md-12 offset-md-1 mt-5">
+<div class="col-md-12 offset-md-3 mt-5">
   <div class="row">
-    <%= render 'users/siderbar' %>
     <div class="col-md-6">
+      <div class="contents-title text-center">
+        <h3>フォロワー一覧</h3>
+      </div>
       <% if @users.exists? %>
         <%= render '/users/index', users: @users %>
       <% else %>

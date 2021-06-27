@@ -12,7 +12,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="card" style="width: 17rem; height: 28rem;">
                     <div class="card-img-wrap">
-                      <%= link_to post_path(p.id) do %>
+                      <%= link_to post_path(p.id), data: {"turbolinks" => false} do %>
                         <%= attachment_image_tag p, :image,fallback: "no_image.jpg", class: "card-image" %>
                       <% end %>
                     </div>
@@ -29,7 +29,7 @@
                       <div id="favorites_buttons_<%= p.id %>">
                         <%= render 'post_favorites/favorite', p: p %>
                       </div>
-                      <%= link_to "詳細画面", post_path(p.id) ,class: "btn btn-primary" %>
+                      <%= link_to "詳細画面", post_path(p.id), data: {"turbolinks" => false} ,class: "btn btn-primary" %>
                       <small class="text-muted"><%= l p.created_at, format: :short %></small>
                     </div>
                   </div>
