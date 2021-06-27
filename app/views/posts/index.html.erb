@@ -6,8 +6,8 @@
         <div class="input-group mb-3">
           <%= form_tag(posts_path, :method => "get") do %>
           <%= text_field_tag :search, '', class: 'form-control', placeholder: "投稿記事検索" %>
-          <%= submit_tag "Search" ,:post_title => nil ,:post_text => nil ,class: "btn btn-primary",value: "検索" %> 
-          <% end %> 
+          <%= submit_tag "Search" ,:post_title => nil ,:post_text => nil ,class: "btn btn-primary",value: "検索" %>
+          <% end %>
         </div>
       </form>
     </div>
@@ -28,7 +28,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                   <div class="card" style="width: 17rem; height: 28rem;">
                     <div class="card-img-wrap">
-                      <%= link_to post_path(p.id)  do %>
+                      <%= link_to post_path(p.id), data: {"turbolinks" => false} do %>
                         <%= attachment_image_tag p, :image,fallback: "no_image.jpg", class: "card-image" %>
                       <% end %>
                     </div>
@@ -44,7 +44,7 @@
 <!--いいね機能-->     <div id="favorites_buttons_<%= p.id %>">
                         <%= render 'post_favorites/favorite', p: p %>
                       </div>
-                      <%= link_to "詳細画面", post_path(p.id) ,class: "btn btn-primary" %>
+                      <%= link_to "詳細画面", post_path(p.id), data: {"turbolinks" => false} ,class: "btn btn-primary" %>
                       <small class="text-muted"><%= l p.created_at, format: :short %></small>
                     </div>
                   </div>
