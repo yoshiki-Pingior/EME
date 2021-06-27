@@ -3,3 +3,15 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"             #時間の表記を日本語表記にするために使用
       short: "%m/%d %H:%M"                     #時間の表記を日本語表記にするために使用
+
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."
+
+
+        
+        

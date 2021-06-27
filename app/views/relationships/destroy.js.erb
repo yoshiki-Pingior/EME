@@ -1,0 +1,3 @@
+$("#followings_<%= @user.id %>").html("フォロー数:<%= @user.followings.count %>");
+$("#followers_<%= @user.id %>").html("フォロワー数:<%= @user.followers.count %>");
+$("#follow_buttons_<%= @user.id %>").html("<%= j(render 'relationships/index', user: @user) %>");

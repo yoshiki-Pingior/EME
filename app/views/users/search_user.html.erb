@@ -1,0 +1,24 @@
+<!-- 検索フォーム -->
+<div class="col-md-6 offset-md-3 mt-5">                    
+  <form>
+    <div class="input-group mb-3">
+      <%= form_tag(search_user_path, :method => "get") do %>
+        <%= text_field_tag :search_user, '', class: 'form-control', placeholder: "ユーザー検索" %>
+        <%= submit_tag "Search" ,:first_name => nil ,:last_name => nil ,:last_name_kana => nil,:first_name_kana => nil,class: "btn btn-primary",value: "検索" %>
+      <% end %>
+    </div>
+  </form>
+</div>
+<div class="col-md-12 offset-md-1 mt-5">
+  <div class="row">
+<!-- ログインユーザー情報 -->
+    <%= render 'users/siderbar' %>                          
+    <div class="col-md-6">
+<!-- ユーザー一覧 -->
+      <%= render '/users/index', users: @users %>           
+    </div>
+  </div>
+</div>
+<%= paginate @users %>
+
+

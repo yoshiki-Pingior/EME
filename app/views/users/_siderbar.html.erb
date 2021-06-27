@@ -1,0 +1,31 @@
+<div class="col-md-2">
+<div id="open">
+  <i class="fas fa-id-badge open-btn fa-3x faa-wrench animated-hover"></i>
+</div>
+
+<div id="side-bar">
+  <%= render '/users/profile', user: @user %>
+</div>
+</div>
+
+
+<script>
+  'use strit';
+const open = document.getElementById('open');
+const close = document.getElementById('close');
+const sideBar = document.getElementById('side-bar');
+const body = document.querySelector('body');
+
+open.addEventListener('click',event=>{
+  sideBar.classList.toggle('active');
+  event.stopPropagation();
+});
+
+close.addEventListener('click',event=>{
+  sideBar.classList.remove('active');
+  event.stopPropagation();
+});
+body.addEventListener('click',()=>{
+  sideBar.classList.remove('active');
+});
+</script>

@@ -13,3 +13,33 @@
   padding: 15px;
   margin: auto;
 }
+
+.jumbotron {
+  background: image-url("top.jpg")center no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+}
+
+.sub-title{
+  border: 3px solid;
+  border-radius: 8px;
+  padding: 30px;
+  font-weight:  bold;
+  background: rgba(255,255,255,0.5);
+}
+
+.swiper-container {
+    width: 600px;
+    height: 300px;
+}
+
+.image-size{
+  width: 600px;
+  height: 300px;
+}
+
+
+

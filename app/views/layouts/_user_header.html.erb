@@ -1,15 +1,40 @@
-<li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
-  <%= link_to "投稿記事", posts_path, class: 'text-light' %>
+<!--フラッシュメッセージ-->
+<li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; color: red;">
+  <%= notice %>
 </li>
+<!--ユーザー一覧-->
 <li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
-  <%= link_to "お気に入り記事", "#", class: 'text-light' %>
+  <%= link_to search_user_path, data: {"turbolinks" => false},class: 'text-light' do %>
+    <i class="fas fa-users faa-wrench animated-hover"></i>
+  <% end %>
 </li>
+<!--投稿記事一覧-->
 <li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
-  <%= link_to "チャット部屋", "#", class: 'text-light' %>
+  <%= link_to posts_path, data: {"turbolinks" => false},class: 'text-light' do %>
+    <i class="fas fa-paste faa-wrench animated-hover"></i>
+  <% end %>
 </li>
+<!--お気に入り記事一覧-->
 <li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
-  <%= link_to "検索", "#", class: 'text-light' %>
+  <%= link_to boards_bookmarks_path, data: {"turbolinks" => false},class: 'text-light' do %>
+    <i class="fas fa-bookmark faa-wrench animated-hover"></i>
+  <% end %>
 </li>
+<!--チャット部屋一覧-->
 <li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
-  <%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'text-light'  %>
+  <%= link_to rooms_path, data: {"turbolinks" => false},class: 'text-light' do %>
+    <i class="fas fa-comments faa-wrench animated-hover"></i>
+  <% end %>
+</li>
+<!--検索-->
+<li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
+  <%= link_to finder_path, data: {"turbolinks" => false},class: 'text-light' do %>
+    <i class="fas fa-search faa-wrench animated-hover"></i>
+  <% end %>
+</li>
+<!--ログアウト-->
+<li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
+  <%= link_to destroy_user_session_path, method: :delete,data: {"turbolinks" => false},class: 'text-light' do %>
+    <i class="fas fa-sign-out-alt faa-wrench animated-hover"></i>
+  <% end %>
 </li>

@@ -5,6 +5,7 @@ class CreatePostBookmarks < ActiveRecord::Migration[5.2]
       t.integer :post_id
 
       t.timestamps
+      
     end
   end
 end

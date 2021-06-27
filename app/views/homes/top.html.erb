@@ -1,18 +1,74 @@
-<body class="test-center">
-  <main class="form-top">
-    <form>
-      <h1 class="h3 mb-3 fw-normal">EME<br>(enhance mutual exchange)</h1>
-      <%= link_to "新規登録", new_user_registration_path, class: "w-100 btn btn-lg btn-info" %>
-      <%= link_to "ログイン", new_user_session_path, class: "w-100 btn btn-lg btn-success" %>
+<div class="jumbotron">
+  <h1 class="text-center pt-5 pb-3">EME<br>(enhance mutual exchange)</h1>
+  <div class="col-md-8 offset-md-3">
+    <div class="row">
+<!--新規登録ボタン-->
+      <div class="col-md-4 offset-md-1 mb-4">
+        <%= link_to "新規登録", new_user_registration_path, class: "w-75 btn btn-lg btn-primary" %>
+      </div>
+<!--ログインボタン-->
+      <div class="col-md-4 mb-4">
+        <%= link_to "ログイン", new_user_session_path, class: "w-75 btn btn-lg btn-success" %>
+      </div>
+<!--お問い合わせボタン-->
+      <div class="col-md-4 offset-md-1 mb-4">
+        <%= link_to "お問い合わせ", inquiry_path, class: "w-75 btn btn-lg btn-secondary" %>
+      </div>
+<!--パスワード再設定ボタン-->
+      <div class="col-md-4 mb-4">
+        <%= link_to "パスワード再設定", new_user_password_path, class: "w-75 btn btn-lg btn-info" %>
+      </div>
+<!--ゲストログインボタン-->
+      <div class="col-md-4 offset-md-3 mb-4">
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "w-75 btn btn-lg btn-warning" %>
+      </div>
+<!--概要-->
+      <div class="col-md-9">
+        <h1 class="top-intro text-center">概要</h1>
+        <div class="sub-title">
+          社会人同士 or 企業と求職者 or 企業同士のビジネスにおける相互交流を充実させるためのサイトです。<br>
+          自身のスキルを高めたり、社会での交流の場を広げることができます。<br><br>
+          社会人においては、企業の商談時に「名刺代わり」「情報収集」をメインで活用でき、<br>
+          学生やフリーターにおいては、「学習記録」「ビジネスにおける関係性を築く」で活用できます。<br><br>
+          まずは色んな方をフォローして社会における関係性を広げていきましょう！
+        </div>
+      </div>
+<!--イメージ画像-->
+      <div class="col-md-9 mt-3">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><%= image_tag asset_path('sns.jpg'), class: "image-size" %></div>
+            <div class="swiper-slide"><%= image_tag asset_path('relationship.jpg'), class: "image-size"  %></div>
+            <div class="swiper-slide"><%= image_tag asset_path('learn.jpg'), class: "image-size"  %></div>
+            <div class="swiper-slide"><%= image_tag asset_path('business_card.jpg'), class: "image-size"  %></div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <!--お問い合わせフォームは別日に調整-->
-      <button class="w-100 btn btn-lg btn-secondary" type="submit">お問い合わせ</button>
-
-      <%= link_to "パスワードを忘れた方", new_user_password_path, class: "w-100 btn btn-lg btn-info" %>
-
-      <div class="top-intro">サイト紹介文</div>
-    </form>
-  </main>
-</body>
-
-
+<!--JS -->
+<script>
+var mySwiper = new Swiper('.swiper-container', {
+	effect: 'cube',
+	autoplay: {
+		delay: 4000,
+		stopOnLastSlide: false,
+		disableOnInteraction: false,
+		reverseDirection: false
+	},
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev'
+	},
+	pagination: {
+		el: '.swiper-pagination',
+		type: 'bullets',
+		clickable: true
+	}
+});
+</script>

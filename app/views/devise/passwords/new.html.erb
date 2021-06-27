@@ -1,16 +1,37 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<div class="col-md-4 offset-md-4 mt-3">
+<%= form_with model: @user, url: user_password_path, class: 'registration-main', local: true do |f| %>
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h3 class='form-header-text'>
+      パスワード再設定
+    </h3>
+  </div>
+  <%# エラーメッセージの出力 %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="col-md-11">
+    <div class='form-text-wrap'>
+      <label class="form-text">メールアドレス<span class="indispensable">(必須)</span></label>
+    </div>
+    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true, :size => "35" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="col-md-11">
+    <h6 class='form-bottom-text'>
+      ※入力されたメールアドレスにパスワード再設定メールを送信します
+    </h6>
   </div>
+  <div class='register-btn col-md-11'>
+    <%= f.submit "送信" ,class:"w-25 register-red-btn" %>
+  </div>
+</div>
 <% end %>
+<div class="mt-4">
+<p>--------------------------もしくは--------------------------</p>
+    <div class="col-md-7 mb-4 mt-3">
+      <%= link_to "アカウント新規作成", new_user_registration_path, class: "w-75 btn btn-lg btn-info" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="col-md-7">
+      <%= link_to "登録済みの方", new_user_session_path, class: "w-75 btn btn-lg btn-success" %>
+    </div>
+</div>
+</div>

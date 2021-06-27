@@ -1,0 +1,21 @@
+<h2 style="text-align:center; margin-top: 50px;">
+  <% @entries.each do |e| %>
+    <%="#{e.user.last_name}#{e.user.first_name}さんと"%>
+  <% end %>
+  <%= "のチャット" %>
+</h2>
+<!-- チャット入力画面 -->
+  <div class="col-md-4 offset-md-4">
+    <div class="chat">
+      <div id="direct_messages">
+        <%= render '/direct_messages/messages', direct_messages: @direct_messages %>
+      </div>
+    </div>
+    <div class="posts-form">
+      <%= form_with(model: [@direct_message]) do |f| %>
+        <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 60, class:"form-text-field" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "送信",class: 'form-submit'%>
+      <% end %>
+    </div>
+  </div>

@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-md-5">
+<!--ユーザー画像-->
+    <div class="user_image">
+      <%= attachment_image_tag user, :image,fallback: "no_image.jpg", size: "300x250",style: "border-radius: 50%;" %>
+    </div>
+<!--フォロー＆フォロワー-->
+    <div style="display: flex;">
+      <div style="margin: 10px 50px 0 0 ;">
+        <%= link_to user_followings_path(user), data: {"turbolinks" => false} do %>
+          <div id="followings_<%= user.id %>">フォロー数:<%= user.followings.count %></div>
+        <% end %>
+      </div>
+      <div style="margin: 10px;">
+        <%= link_to user_followers_path(user), data: {"turbolinks" => false} do %>
+          <div id="followers_<%= user.id %>">フォロワー数: <%= user.followers.count %></div>
+        <% end %>
+      </div>
+    </div>
+<!--チャット機能-->
+    <div style="display: flex;">
+      <div style="margin: 10px 20px 0 0 ;" id="follow_buttons_<%= user.id %>">
+        <% if current_user != user %>
+          <%= render '/relationships/index', user: user %>
+        <% end %>
+      </div>
+      <div style="margin: 10px;">
+        <% if user.id == current_user.id %>
+          <%= @msg %>
+        <% else %>
+          <% if @isRoom == true %>
+            <p><%= link_to 'DMへ', room_path(@roomId) %></p>
+          <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e|%>
+                <% e.hidden_field :user_id, value: user.id %>
+              <% end %>
+            <%= f.submit "DMを開始する" , class: "btn btn-info"%>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<!--ユーザー情報-->
+  <div class="col-md-7">
+<!--ユーザー編集-->
+    <div class="col-md-1 offset-md-10 mt-3">
+      <% if user.id == current_user.id %>
+        <%= link_to edit_user_path do %>
+          <i class="fas fa-user-edit fa-2x"></i>
+        <% end %>
+      <% end %>
+    </div>
+<!--ユーザー情報（名前＆自己紹介）-->
+    <div class="col-md-11">
+      <table>
+        <tr height="80px">
+          <th><label style="width: 100px;">フリガナ</label></th>
+            <td style="word-break: break-all;">
+              <%= user.last_name_kana %>
+              <%= user.first_name_kana %>
+            </td>
+        </tr>
+        <tr height="80px">
+          <th><label style="width: 100px;">名前</label></th>
+            <td style="word-break: break-all;">
+              <%= user.last_name %>
+              <%= user.first_name %>
+            </td>
+        </tr>
+        <tr height="80px">
+          <th><label style="width: 100px;">自己紹介</label></th>
+            <td style="word-break: break-all;"><%= user.introduction %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<!--ユーザー情報（経歴）-->
+  <div class="col-md-5">
+    <table>
+      <tr>
+        <div class="form-group">
+          <th><label style="width: 70px;">経歴</label></th>
+            <td style="word-break: break-all;"><%= user.career %></td>
+        </div>
+      </tr>
+    </table>
+  </div>
+<!--ユーザー情報（趣味＆分野＆休日＆資格＆自由欄）-->
+  <div class="col-md-6">
+    <table>
+      <tr height="40px">
+        <th><label style="width: 120px;">趣味</label></th>
+          <td style="word-break: break-all;"><%= user.hobby %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">興味のある分野</label></th>
+          <td style="word-break: break-all;"><%= user.interest_field %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">休日の過ごし方</label></th>
+          <td style="word-break: break-all;"><%= user.holiday %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">資格</label></th>
+          <td style="word-break: break-all;"><%= user.qualification %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">自由欄</label></th>
+          <td style="word-break: break-all;"><%= user.free_space %></td>
+      </tr>
+    </table>
+  </div>
+</div>

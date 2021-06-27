@@ -1,31 +1,103 @@
-<h1>Posts#show</h1>
-
-<h2>投稿詳細</h2>
-
-
-<div class='col-md-8 offset-md-1'>
-        <table class='table table-hover table-inverse'>
-          <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-          <div><%= l @post.created_at, format: :short %></div>
-          <tr>
-            <td>記事タイトル</td>
-            <td><%= @post.post_title %></td>
-          </tr>
-          <tr>
-            <td>タグ一覧</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>記事内容</td>
-            <td><%= @post.post_text %></td>
-          </tr>
-          <tr>
-            <td>画像</td>
-            <td><%= attachment_image_tag @post, :image,fallback: "no_image.jpg", size:"100x50" %></td>
-          </tr>
-          <tr>
-            <td>自由欄</td>
-            <td><%= @post.post_free_space %></td>
-          </tr>
-        </table>
+<h2 class="text-center pt-5 pb-3">投稿詳細</h2>
+<div class="col-md-6 offset-md-2">
+  <div class="row">
+  <!--お気に入り機能-->
+    <div class="col-md-1 offset-md-4">
+      <div id="bookmarks_buttons_<%= @post.id %>">
+        <%= render 'bookmarks/bookmarks_button', post: @post %>
       </div>
+    </div>
+  <!--いいね機能-->
+    <div class="col-md-6">
+      <div id="favorites_buttons_<%= @post.id %>">
+        <%= render 'post_favorites/favorite', p: @post %>
+      </div>
+    </div>
+  <!--削除機能-->
+    <div class="col-md-1">
+      <% if user_signed_in? && current_user.id == @post.user_id %>
+        <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+          <i class="fas fa-trash-alt fa-2x"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <!--作成日時-->
+    <div class="col-md-2 offset-md-11">
+      <%= l @post.created_at, format: :short %>
+    </div>
+  <!--投稿者名-->
+    <div class="col-md-8 offset-md-4 mt-4">
+      <table>
+        <tr>
+          <th><label style="width: 120px;">投稿者</label></th>
+          <td style="word-break: break-all;">
+            <%= link_to user_path(@post.user.id) do %>
+              <%= @post.user.last_name %><%= @post.user.first_name %>
+            <% end %>
+          </td>
+        </tr>
+  <!--投稿タイトル-->
+        <tr>
+          <th><label style="width: 120px;">タイトル</label></th>
+          <td style="word-break: break-all;"><%= @post.post_title %></td>
+        </tr>
+  <!--投稿タグ-->
+        <tr>
+          <th><label style="width: 120px;">タグ</label></th>
+          <td style="word-break: break-all;">
+            <% @post.tags.each do |tag| %>
+              #<%= tag.tag_name %>
+            <% end %>
+          </td>
+        </tr>
+  <!--投稿内容-->
+        <tr>
+          <th><label style="width: 120px;">内容</label></th>
+          <td style="word-break: break-all;"><%= @post.post_text %></td>
+        </tr>
+      </table>
+    </div>
+  <!--投稿画像-->
+    <div class="col-md-4 offset-md-4 mt-5">
+      <table>
+        <tr>
+          <td><%= attachment_image_tag @post, :image,fallback: "no_image.jpg", size:"300x250" %></td>
+        </tr>
+      </table>
+    </div>
+  <!--自由欄-->
+    <div class="col-md-4 mt-5">
+      <table>
+        <th><label style="width: 120px;">自由欄</label></th>
+        <tr>
+          <td style="word-break: break-all;"><%= @post.post_free_space %></td>
+        </tr>
+      </table>
+    </div>
+  <!--コメント機能-->
+    <div class="col-md-5 offset-md-4 mt-5">
+      <div><コメント欄></div>
+  <!--エラーメッセージ-->
+      <div id="comments_error">
+        <%= render 'layouts/errors', model: @post_comment %>
+      </div>
+    </div>
+  <!--コメント件数-->
+    <div class="col-md-3 mt-5">
+      <div id="comments_<%= @post.id %>">コメント件数:<%= @post.post_comments.count %></div>
+    </div>
+  <!--コメント表示-->
+    <div class="col-md-6 offset-md-4">
+      <div id="post_comments_<%= @post.id %>">
+        <%= render '/post_comments/index', post: @post %>
+      </div>
+    </div>
+  <!--コメント入力-->
+    <div class="col-md-8 offset-md-4">
+      <%= form_with(model:[@post, @post_comment]) do |f| %>
+        <%= f.text_area :comment,placeholder: "コメントをここに", :size => "35x2" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+  </div>
+</div>

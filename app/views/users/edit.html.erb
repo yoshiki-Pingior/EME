@@ -1,87 +1,73 @@
-<h1>Users#edit</h1>
+<h2 class="text-center pt-5 pb-3">Profile Edit</h2>
 
-<h2>プロフィール編集</h2>
-
-<%= form_with model:current_user, local:true do |f| %>
-<div class="row align-items-md-stretch">
-
-  <div class="col-md-3">
-    <div class="user_image">
-      <%= f.attachment_field :image %>
+<div class="col-md-6 offset-md-3">
+<!--エラーメッセージ-->
+  <%= render 'layouts/errors', model: @user %>
+  <%= form_with model: @user, local:true do |f| %>
+  <div class="row">
+<!--ユーザー画像-->
+    <div class="col-md-5">
+      <div class="user_image">
+        <%= attachment_image_tag @user, :image,fallback: "no_image.jpg", size: "300x250",style: "border-radius: 50%;" %>
+        <%= f.attachment_field :image, class: 'image-prev' %>
+      </div>
+    </div>
+<!--ユーザー情報（名前＆フリガナ＆自己紹介）-->
+    <div class="col-md-6">
+      <table>
+        <tr height="80px">
+          <th><label style="width: 120px;">フリガナ</label></th>
+            <td class="user_name_kana"><%= f.text_field :last_name_kana,autofocus: true, placeholder: "セイ" %></td>
+            <td class="user_name_kana"><%= f.text_field :first_name_kana,autofocus: true, placeholder: "メイ" %></td>
+        </tr>
+        <tr height="80px">
+          <th><label style="width: 120px;">名前</label></th>
+            <td class="user_name"><%= f.text_field :last_name,autofocus: true, placeholder: "姓" %></td>
+            <td class="user_name"><%= f.text_field :first_name,autofocus: true, placeholder: "名" %></td>
+        </tr>
+      </table>
+      <table>
+        <tr height="80px">
+          <th><label style="width: 120px;">自己紹介</label></th>
+            <td class="user_intro"><%= f.text_area :introduction, autofocus: true, placeholder: "自己紹介" %></td>
+        </tr>
+      </table>
+    </div>
+<!--ユーザー情報（経歴）-->
+    <div class="col-md-5">
+      <table>
+        <tr>
+          <th><label style="width: 40px;">経歴</label></th>
+            <td class="user_career"><%= f.text_area :career, autofocus: true, placeholder: "経歴" %></td>
+        </tr>
+      </table>
+    </div>
+<!--ユーザー情報（趣味＆分野＆休日＆資格＆自由欄）-->
+    <div class="col-md-6">
+    <table>
+      <tr height="40px">
+        <th><label style="width: 120px;">趣味</label></th>
+          <td class="user_hobby"><%= f.text_field :hobby, autofocus: true, placeholder: "趣味" %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">興味のある分野</label></th>
+          <td class="user_field"><%= f.text_field :interest_field, autofocus: true, placeholder: "興味のある分野" %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">休日の過ごし方</label></th>
+          <td class="user_holiday"><%= f.text_field :holiday, autofocus: true, placeholder: "休日の過ごし方" %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">資格</label></th>
+          <td class="user_qualification"><%= f.text_field :qualification, autofocus: true, placeholder: "資格" %></td>
+      </tr>
+      <tr height="40px">
+        <th><label style="width: 120px;">自由欄</label></th>
+          <td class="user_free_space"><%= f.text_area :free_space, autofocus: true, placeholder: "自由欄" %></td>
+      </tr>
+    </table>
+    <%= f.submit "変更を保存" %>
     </div>
   </div>
-  
-  <div class="col-md-7">
-  <table>
-    <tr>
-      <div class="form-group">
-        <th><label>名前</label></th>
-        <td>(姓)</td>
-        <td><%= f.text_field :last_name,autofocus: true %></td>
-        <td>(名)</td>
-        <td><%= f.text_field :first_name,autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>フリガナ</label></th>
-        <td>(セイ)</td>
-        <td><%= f.text_field :last_name_kana,autofocus: true %></td>
-        <td>(メイ)</td>
-        <td><%= f.text_field :first_name_kana,autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>自己紹介</label></th>
-        <td></td>
-        <td><%= f.text_field :introduction, autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>経歴</label></th>
-        <td></td>
-        <td><%= f.text_field :career, autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>趣味</label></th>
-        <td></td>
-        <td><%= f.text_field :hobby, autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>興味のある分野</label></th>
-        <td></td>
-        <td><%= f.text_field :interest_field, autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>休日の過ごし方</label></th>
-        <td></td>
-        <td><%= f.text_field :holiday, autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>資格</label></th>
-        <td></td>
-        <td><%= f.text_field :qualification, autofocus: true %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th><label>自由欄</label></th>
-        <td></td>
-        <td><%= f.text_area :free_space, autofocus: true %></td>
-      </div>
-    </tr>
-  </table>
-  <%= f.submit "変更を保存" %>
-  </div>
+  <% end %>
 </div>
-<% end %>

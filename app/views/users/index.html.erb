@@ -1,69 +1,49 @@
-<h1>Users#index</h1>
-<div style="width:150px; height:100px; background:limegreen; border-radius:70px 0; text-align:center; padding-top:40px">
-  <%= link_to "新規投稿", new_post_path,class: 'create-page' %>  
+<div class="col-md-12 offset-md-1 mt-5">
+  <div class="row">
+    <%= render 'users/siderbar' %>
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-black bg-light rounded-3">
+        <div class="texts-wrapper">
+          <div class="contents-title text-center">
+            <h3>フォローユーザーの投稿記事</h3>
+            <div class="row">
+                <% @posts = Post.where(user_id: @follow_users).order(created_at: :desc).page(params[:page]).per(6) %>
+                <% @posts.each do |p| %>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card" style="width: 17rem; height: 28rem;">
+                    <div class="card-img-wrap">
+                      <%= link_to post_path(p.id), data: {"turbolinks" => false} do %>
+                        <%= attachment_image_tag p, :image,fallback: "no_image.jpg", class: "card-image" %>
+                      <% end %>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-title"><%= p.post_title.truncate(25) %></p>
+                      <p  class="card-text">
+                        <% p.tags.each do |t| %>
+                          <p style="display: inline-flex;">#<%= t.tag_name.truncate(25) %></p>
+                        <% end %>
+                      </p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <!--いいね機能-->
+                      <div id="favorites_buttons_<%= p.id %>">
+                        <%= render 'post_favorites/favorite', p: p %>
+                      </div>
+                      <%= link_to "詳細画面", post_path(p.id), data: {"turbolinks" => false} ,class: "btn btn-primary" %>
+                      <small class="text-muted"><%= l p.created_at, format: :short %></small>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+            </div>
+          </div>
+          <%= paginate @posts %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-<div class="row align-items-md-stretch">
-  <div class="col-md-3">
-    <div class="h-100 p-5 text-white bg-dark rounded-3">
-      <table>
-        <tr>
-          <div class="form-group">
-            <th>
-              <td><%= attachment_image_tag @user, :image,fallback: "no_image.jpg", size: "100x70"%></td>
-            </th>
-          </div>
-        </tr>
-        <tr>
-          <div class="form-group">
-            <th>
-              <td>
-                <%= current_user.last_name_kana %>
-                <%= current_user.first_name_kana %>
-              </td>
-            </th>
-          </div>
-        </tr>
-        <tr>
-          <div class="form-group">
-            <th>
-              <td>
-                <%= current_user.last_name %>
-                <%= current_user.first_name %>
-              </td>
-            </th>
-          </div>
-        </tr>
-        <tr>
-          <div class="form-group">
-            <th>
-              <td>ユーザー情報</td>
-            </th>
-          </div>
-        </tr>
-        <tr>
-          <div class="form-group">
-            <th>
-              <td>フォロー数</td>
-            </th>
-          </div>
-        </tr>
-        <tr>
-          <div class="form-group">
-            <th>
-              <td>フォロワー数</td>
-            </th>
-          </div>
-        </tr>
-      </table>
-      <%= link_to '詳細', user_path(current_user.id) %>
-    </div>
-  </div>
 
-  <div class="col-md-9">
-    <div class="h-100 p-5 text-black bg-light rounded-3">
-      <div>フォローユーザーの投稿記事</div>
-    </div>
-  </div>
 </div>

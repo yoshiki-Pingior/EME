@@ -61,6 +61,7 @@ Twitter や Facebook と似た機能になっており、誰でも使用しや�
 ・学生、フリーター　　自身の学習記録、就活時にアピール<br>
 ・採用担当者　　　　　求めている人材の発掘、面接前に情報収集可能<br>
 
+
 ## 設計書
 
 ・ER 図、開発背景、画面設計<br>
@@ -74,7 +75,11 @@ https://docs.google.com/spreadsheets/d/1n55w2tp2SaO3grjgqhxtX4ad3qWSQs_LT42YbhFO
 
 ## チャレンジ要素一覧
 
-https://docs.google.com/spreadsheets/d/1HvHbuj-xlSyLgjNtnyL6zdHTLjXhFucdYg9PBxzbsKw/edit#gid=154069660
+https://docs.google.com/spreadsheets/d/1HvHbuj-xlSyLgjNtnyL6zdHTLjXhFucdYg9PBxzbsKw/edit#gid=154069660<br>
+
+## テスト項目（手動でチェック)
+https://docs.google.com/spreadsheets/d/10oxV29Zavsb3eEfWIii3xjtKSBRpd2OLr2HyS1fM03Y/edit#gid=0<br>
+
 
 ## 開発環境
 
@@ -89,5 +94,3 @@ IDE：Cloud9<br>
 https://fontfree.me/ （フォントの変更に使用）<br>
 https://icooon-mono.com/ （サイトのアイコンに使用）<br>
 https://www.pakutaso.com/ （写真素材に使用）<br>
-https://o-dan.net/ja/　 （写真素材に使用）<br>
-https://morguefile.com/ （写真素材に使用）<br>

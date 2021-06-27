@@ -1,0 +1,38 @@
+<h2 class="text-center pt-5">お問い合わせ</h2>
+  <div class="col-md-4 offset-md-4">
+    <%= form_for @inquiry, :url => inquiry_thanks_path do |f| %>
+    <table>
+      <tr>
+        <div class="form-group">
+          <th>名前<label>(必須)</label></th>
+          <td>
+            <%= f.hidden_field :name %>
+            <%= @inquiry.name %>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th>メールアドレス<label>(必須)</label></th>
+          <td>
+            <%= f.hidden_field :email %>
+            <%= @inquiry.email %>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <th style="width: 200px;">お問い合わせ内容<label></label></th>
+          <td style="word-break: break-all;">
+            <%= f.hidden_field :message %>
+            <%= simple_format(@inquiry.message) %>
+          </td>
+        </div>
+      </tr>
+    </table>
+    <div class="text-center pt-4">
+      <%= f.submit '送信', :class => 'w-50 btn btn-primary' %>
+    </div>
+    <% end %>
+  </div>
+ 

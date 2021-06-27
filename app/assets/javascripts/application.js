@@ -14,7 +14,27 @@
 //= require popper
 //= require bootstrap-sprockets
 
+
 //= require rails-ujs
 //= require activestorage
+//= require jquery
 //= require turbolinks
 //= require_tree .
+//= require jquery.jscroll.min.js
+
+$(function(){
+  $("#smooth-scroll").click(function() {
+    $("html,body").animate({scrollTop:0}, "1000");
+  });
+});
+
+// 投稿画像のjs
+$(function(){
+    $(document).on('change', '.image-prev', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]); 
+});
+});

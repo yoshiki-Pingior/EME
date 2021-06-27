@@ -1,3 +1,59 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card {
+  margin-bottom: 10px;
+}
+
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 17rem;
+}
+
+.card-image{
+  position: absolute;
+  top: 49%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  background-position: center;
+  margin: 5px;
+  width: 400px;
+  height: 280px;
+  border: 1px solid #ccc;
+  background-size: cover;
+}
+
+.post_title input,
+.post_tag input {
+  width: 635px;
+  height: 30px;
+}
+
+.post_text textarea{
+  width: 635px;
+  height: 200px;
+}
+
+.post_free_space textarea{
+  width: 245px;
+  height: 245px;
+}
+
+@media screen and (max-width: 480px) {
+  .post_title input,
+  .post_tag input,{
+    width: 330px;
+    height: 30px;
+  }
+
+  .post_text textarea{
+    width: 330px;
+    height: 250px;
+  }
+  .post_free_space textarea{
+    width: 330px;
+    height: 250px;
+  }
+}

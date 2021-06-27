@@ -1,0 +1,14 @@
+<div class="col-md-12 offset-md-3 mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="contents-title text-center">
+        <h3>フォロー一覧</h3>
+      </div>
+      <% if @users.exists? %>
+        <%= render '/users/index', users: @users %>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

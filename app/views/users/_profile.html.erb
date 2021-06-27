@@ -1,0 +1,67 @@
+  <div class="col-md-12">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+<!--ログインユーザーの画像-->
+      <div>
+        <%= attachment_image_tag user, :image,fallback: "no_image.jpg", size: "200x200" ,style: "border-radius: 50%;"%>
+      </div>
+<!--ログインユーザーの名前（仮名）-->
+      <div style="font-size: 14px">
+        <%= current_user.last_name_kana %>
+        <%= current_user.first_name_kana %>
+      </div>
+<!--ログインユーザーの名前-->
+      <div style="font-size: 19px">
+        <%= current_user.last_name %>
+        <%= current_user.first_name %>
+      </div>
+<!--ログインユーザーのフォロー-->
+      <div class="mt-5">
+        <%= link_to user_followings_path(user), data: {"turbolinks" => false}, class: 'text-light' do %>
+          <%= user.followings.count %> フォロー
+        <% end %>
+      </div>
+<!--ログインユーザーのフォロワー-->
+      <div class="mt-3">
+        <%= link_to user_followers_path(user), data: {"turbolinks" => false},class: 'text-light' do %>
+           <%= user.followers.count %> フォロワー
+        <% end %>
+      </div>
+<!--ログインユーザーの詳細-->
+      <div class="mt-3">
+        <%= link_to user_path(current_user.id), data: {"turbolinks" => false},class: 'text-light faa-parent animated-hover' do %>
+          <i class="fas fa-user mr-2 faa-wrench animated-hover"></i>ユーザー情報
+        <% end %>
+      </div>
+<!--ユーザー一覧-->
+      <div class="mt-5">
+        <%= link_to search_user_path, data: {"turbolinks" => false},class: 'text-light faa-parent animated-hover' do %>
+          <i class="fas fa-users mr-2 faa-wrench animated-hover"></i>ユーザー一覧
+        <% end %>
+      </div>
+<!--投稿記事一覧-->
+      <div class="mt-3">
+        <%= link_to posts_path, data: {"turbolinks" => false},class: 'text-light faa-parent animated-hover' do %>
+          <i class="fas fa-paste mr-2 faa-wrench animated-hover"></i>投稿記事一覧
+        <% end %>
+      </div>
+<!--ログインユーザーのお気に入り一覧-->
+      <div class="mt-3">
+        <%= link_to boards_bookmarks_path, data: {"turbolinks" => false},class: 'text-light faa-parent animated-hover' do %>
+          <i class="fas fa-bookmark mr-2 faa-wrench animated-hover"></i>お気に入り一覧
+        <% end %>
+      </div>
+<!--ログインユーザーのチャット一覧-->
+      <div class="mt-3">
+        <%= link_to rooms_path, data: {"turbolinks" => false},class: 'text-light faa-parent animated-hover' do %>
+          <i class="fas fa-comments mr-2 faa-wrench animated-hover"></i>チャット一覧
+        <% end %>
+      </div>
+<!--新規投稿-->
+      <div class="mt-5">
+        <%= link_to new_post_path, data: {"turbolinks" => false},class: 'text-light faa-parent animated-hover' do %>
+          <i class="fas fa-plus-circle fa-3x mr-2 faa-wrench animated-hover"></i>新規投稿
+        <% end %>
+      </div>
+    </div>
+  </div>
+
