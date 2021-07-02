@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @user = current_user
     @posts = Post.all
     @posts = Post.search(params[:search]).order(created_at: :desc).page(params[:page]).per(6)
+    @posts = @posts.page(params[:page]).per(11)
   end
 
   def new
@@ -42,7 +43,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:post_title, :post_text, :post_free_space, :image, :user_id)
   end
 
-  def tag_params       
+  def tag_params
     params.require(:post).permit(:tag_name)
   end
 end
