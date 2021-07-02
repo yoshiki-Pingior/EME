@@ -35,6 +35,6 @@ $(function(){
     reader.onload = function (e) {
         $(".image").attr('src', e.target.result);
     }
-    reader.readAsDataURL(e.target.files[0]); 
+    reader.readAsDataURL(e.target.files[0]);
 });
 });
