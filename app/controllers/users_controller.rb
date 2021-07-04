@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post = Post.all.order(created_at: :desc).page(params[:page]).per(6)
+    @post = Post.all.order(created_at: :desc).page(params[:page]).without_count.per(11)
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id                                           #ログインユーザーならmsgを表示させる
