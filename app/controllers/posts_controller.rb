@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   def index
     @user = current_user
     @posts = Post.all
-    @posts = Post.search(params[:search]).order(created_at: :desc).page(params[:page]).per(6)
-    @posts = @posts.page(params[:page]).per(11)
+    @posts = Post.search(params[:search]).order(created_at: :desc)
+    @posts = @posts.page(params[:page]).without_count.per(11)
   end
 
   def new

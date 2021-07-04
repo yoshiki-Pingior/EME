@@ -22,6 +22,7 @@
         <div class="texts-wrapper">
           <div class="contents-title text-center">
             <h3>ブックマーク一覧</h3>
+            <div class="jscroll">
               <div class="row">
                 <% @bookmarks.each do |b| %>
                 <div class="col-12 col-md-6 col-lg-4">
@@ -51,9 +52,24 @@
                 </div>
                 <% end %>
             </div>
+            <%#= link_to_prev_page @bookmarks, '前のページ', class: "prev" %>
+            <%= link_to_next_page @bookmarks, '次のページ', class: "next" %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<!--無限スクロール-->
+<script>
+  $(document).on('turbolinks:load', function() {
+  $('.jscroll').jscroll({
+    contentSelector: '.jscroll',
+    nextSelector: 'a.next',
+    loadingHtml: '読み込み中'
+  });
+});
+</script>
