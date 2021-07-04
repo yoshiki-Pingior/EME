@@ -6,7 +6,8 @@
         <div class="texts-wrapper">
           <div class="contents-title text-center">
             <h3>フォローユーザーの投稿記事</h3>
-            <div class="row">
+            <div class="jscroll">
+              <div class="row">
                 <% @posts = Post.where(user_id: @follow_users).order(created_at: :desc).page(params[:page]).per(6) %>
                 <% @posts.each do |p| %>
                 <div class="col-12 col-md-6 col-lg-4">
@@ -35,15 +36,24 @@
                   </div>
                 </div>
                 <% end %>
+              </div>
+              <%#= link_to_prev_page @posts, '前のページ', class: "prev" %>
+              <%= link_to_next_page @posts, '次のページ', class: "next" %>
             </div>
           </div>
-          <%= paginate @posts %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
-</div>
+<!--無限スクロール-->
+<script>
+  $(document).on('turbolinks:load', function() {
+  $('.jscroll').jscroll({
+    contentSelector: '.jscroll',
+    nextSelector: 'a.next',
+    loadingHtml: '読み込み中'
+  });
+});
+</script>

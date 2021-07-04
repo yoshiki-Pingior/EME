@@ -4,14 +4,14 @@ class UsersController < ApplicationController
   def index
     @user = current_user
     @follow_users = @user.followings                                         #フォローしているユーザー情報取得のため追加
-    @post = Post.all
+    @post = Post.all.page(params[:page]).without_count.per(6)
   end
 
   def search_user
     @user = current_user
     @users = User.all
     @users = User.search_user(params[:search_user]).order(created_at: :desc) #ユーザー一覧から検索するために追加
-    @users = @users.page(params[:page]).per(10)
+    @users = @users.order(created_at: :desc).page(params[:page]).without_count.per(10)
   end
 
   def show

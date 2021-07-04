@@ -13,14 +13,12 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-
-
+//= require jquery.jscroll.min.js
 //= require rails-ujs
 //= require activestorage
-//= require jquery
 //= require turbolinks
 //= require_tree .
-//= require jquery.jscroll.min.js
+
 
 $(function(){
   $("#smooth-scroll").click(function() {
