@@ -2,6 +2,7 @@
   <div class="texts-wrapper">
     <div class="contents-title text-center">
       <h2>投稿記事一覧</h2>
+      <div class="jscroll">
       <div class="row">
         <% @posts.each do |p| %>
           <div class="col-12 col-xs-9 col-md-6 col-lg-4">
@@ -15,7 +16,7 @@
                 <p class="card-title"><%= p.post_title.truncate(25) %></p>
                 <p  class="card-text">
                   <% p.tags.each do |t| %>
-                    <p style="display: inline-flex;">#<%= t.tag_name.truncate(25) %></p>
+                    <p style="display: inline-flex;"><span class="badge badge-info">#<%= t.tag_name.truncate(25) %></span></p>
                   <% end %>
                 </p>
               </div>
@@ -31,7 +32,11 @@
           </div>
         <% end %>
       </div>
+        <%= link_to_prev_page @posts, '前のページ', class: "prev" %>
+        <%= link_to_next_page @posts, '次のページ', class: "next" %>
+      </div>
     </div>
-    <%= paginate @posts %>
   </div>
 </div>
+
+
