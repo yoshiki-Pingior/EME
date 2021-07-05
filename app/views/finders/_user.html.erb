@@ -1,6 +1,7 @@
 <div class='col-xs-9'>
-  <div class="container pt-3">
-   <table class='table'>
+  <div class="container pt-3 text-center">
+  <div class="jscroll">
+    <table class='table'>
       <% @users.each do |user| %>
       <tr>
         <td>
@@ -18,5 +19,9 @@
       </tr>
       <% end %>
     </table>
+    <%= link_to_prev_page @users, '前のページ', class: "prev" %>
+    <%= link_to_next_page @users, '次のページ', class: "next" %>
+  </div>
   </div>
 </div>
+

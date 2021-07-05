@@ -46,7 +46,7 @@
           <th><label style="width: 120px;">タグ</label></th>
           <td style="word-break: break-all;">
             <% @post.tags.each do |tag| %>
-              #<%= tag.tag_name %>
+              <span class="badge badge-info">#<%= tag.tag_name %></span>
             <% end %>
           </td>
         </tr>

@@ -2,6 +2,7 @@
   <div class="texts-wrapper">
     <div class="contents-title text-center">
       <h3>ブックマーク一覧</h3>
+      <div class="jscroll">
         <div class="row">
           <% bookmarks.each do |b| %>
           <div class="col-12 col-md-6 col-lg-4">
@@ -15,7 +16,7 @@
                 <p class="card-title"><%= b.post.post_title %></p>
                 <p  class="card-text">
                   <% b.post.tags.each do |t| %>
-                    <p style="display: inline-flex;">#<%= t.tag_name %></p>
+                    <p style="display: inline-flex;"><span class="badge badge-info">#<%= t.tag_name.truncate(25) %></span></p>
                   <% end %>
                 </p>
               </div>
@@ -31,6 +32,10 @@
           </div>
           <% end %>
       </div>
+      <%= link_to_prev_page @bookmarks, '前のページ', class: "prev" %>
+      <%= link_to_next_page @bookmarks, '次のページ', class: "next" %>
+    </div>
     </div>
   </div>
 </div>
+
