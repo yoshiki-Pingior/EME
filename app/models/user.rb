@@ -24,11 +24,14 @@ class User < ApplicationRecord
   has_many :direct_messages, dependent: :destroy     #チャット機能
   has_many :entries, dependent: :destroy             #チャット機能
   has_many :rooms, through: :entries                 #チャット部屋
-  
+
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy     #フォロワー機能
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy                #フォロー機能
   has_many :followers, through: :reverse_of_relationships, source: :follower                                          #フォロワー機能
   has_many :followings, through: :relationships, source: :followed                                                    #フォロー機能
+
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy          #通知機能
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy         #通知機能
 
   def follow(user_id)
     relationships.create(followed_id: user_id)
@@ -43,17 +46,14 @@ class User < ApplicationRecord
   end
 
   def self.search_user(search_user)                            #user一覧での検索
-    if search_user
-      User.where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search_user}%","%#{search_user}%","%#{search_user}%","%#{search_user}%"])
-    else
-      User.all
-    end
+    return all if search_user.blank?
+      where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search_user}%","%#{search_user}%","%#{search_user}%","%#{search_user}%"])
   end
 
-  def self.looks(words)                                        #検索一覧での検索
-    @user = User.where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{words}%","%#{words}%","%#{words}%","%#{words}%"])
+  def self.name_or_name_kana_like(words)                       #検索一覧での検索
+    where(['last_name LIKE ? OR last_name_kana LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{words}%","%#{words}%","%#{words}%","%#{words}%"])
   end
-  
+
   def self.guest                                               # ゲストユーザーでログインできるように設定
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64              # パスワードはランダム設定
@@ -61,6 +61,21 @@ class User < ApplicationRecord
       user.first_name = "げすと"
       user.last_name_kana = "テスト"
       user.first_name_kana = "ゲスト"
+    end
+  end
+
+  def me?(user_id)
+    id == user_id
+  end
+  
+  def create_notification_follow(current_user)                 # フォローの通知
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
     end
   end
 

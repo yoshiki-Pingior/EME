@@ -6,6 +6,7 @@ class PostFavoritesController < ApplicationController
     favorite = current_user.post_favorites.new(post_id: @post.id)
     favorite.save
     # redirect_to request.referer
+    @post.create_notification_like!(current_user)
   end
 
   def destroy

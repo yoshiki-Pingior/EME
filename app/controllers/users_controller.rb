@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = current_user
     @users = User.all
     @users = User.search_user(params[:search_user]).order(created_at: :desc) #ユーザー一覧から検索するために追加
-    @users = @users.order(created_at: :desc).page(params[:page]).without_count.per(10)
+    @users = @users.order(created_at: :desc).page(params[:page]).without_count.per(15)
   end
 
   def show

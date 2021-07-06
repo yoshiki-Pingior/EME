@@ -2,6 +2,16 @@
 <li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; color: red;">
   <%= notice %>
 </li>
+<!--通知一覧-->
+<li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
+  <%= link_to notifications_path(current_user), data: {"turbolinks" => false} do %>
+    <% if unchecked_notifications.any? %>
+      <i class="fas fa-bell text-warning faa-wrench animated-hover"></i>
+    <% else %>
+      <i class="fas fa-bell text-white faa-wrench animated-hover"></i>
+    <% end %>
+  <% end %>
+</li>
 <!--ユーザー一覧-->
 <li style="padding: 10px; margin-bottom: 10px; margin-right: 20px; border: 1px solid #fff; border-radius: 10px;">
   <%= link_to search_user_path, data: {"turbolinks" => false},class: 'text-light' do %>
