@@ -1,0 +1,56 @@
+<!-- 通知内容を表示 -->
+<div class="jscroll">/
+<table class="notification-content table table-hover table-inverse">
+  <% @notifications.each do |notification| %>
+    <% visitor = notification.visitor %>
+    <% visited = notification.visited %>
+    <tr>
+      <th>
+        <%= link_to user_path(visitor) do %>
+          <%= attachment_image_tag(visitor, :image, fallback: "no_image.jpg", size: "50x50") %>
+          <strong><%= visitor.last_name %><%= visitor.first_name %></strong>さんが
+        <% end %>
+        <% case notification.action when 'follow' then %>
+        あなたをフォローしました。
+        <% when 'favorite' then %>
+          <%= link_to 'あなたの投稿', post_path(notification.post), style: "font-weight: bold;" %>
+          にいいねしました
+        <% when 'post_comment' then %>
+          <% if notification.post %>
+            <% if notification.post.user_id == visited.id %>
+              <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
+              にコメントしました。
+            <% else %>
+              <%= link_to post_path(notification.post) do %>
+                <%= attachment_image_tag(notification.post.user, :image, fallback: "no_image.jpg", size: "50x50") %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <%# when 'message' then %>
+          <%# if notification.room %>
+            <%#= link_to "あなたにメッセージ", room_path(notification.room), style: "font-weight: bold;" %>
+            <!--を送信しました。-->
+          <%# end %>
+        <% end %>
+      </th>
+    </tr>
+  <% end %>
+</table>
+<%#= link_to_prev_page @notifications, '前のページ', class: "prev" %>
+      <%#= link_to_next_page @notifications, '次のページ', class: "next" %>
+      <!--</div>-->
+
+<!--無限スクロール-->
+<script>
+  $(document).on('turbolinks:load', function() {
+  $('.jscroll').jscroll({
+    contentSelector: '.jscroll',
+    nextSelector: 'a.next',
+    loadingHtml: '読み込み中'
+  });
+});
+</script>
+
+
+
+
