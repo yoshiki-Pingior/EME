@@ -1,22 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
-        <% if user_signed_in? %>
-          <%= link_to users_path, data: {"turbolinks" => false},class: 'text-light' do %>
-            <span style="font-size: 50px; ">EME</span>
+  <div class="container">
+    <% if user_signed_in? %>
+      <%= link_to users_path, data: {"turbolinks" => false},class: 'text-light' do %>
+        <span style="font-size: 50px; ">EME</span>
+      <% end %>
+    <% else %>
+      <a class="navbar-brand" href="/"><span style="font-size: 50px">EME</span></a>
+    <% end %>
+
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse offset-lg-2" id="navbarNav">
+      <nav>
+        <ul class="nav navbar-nav navbar-right ml-auto bg p-4">
+          <% if user_signed_in? %>
+            <%= render 'layouts/user_header' %>
+          <% else %>
+            <!--トップ画面（ログイン前）にはヘッダーを設けないため何も記載していない-->
           <% end %>
-
-        <% else %>
-          <a class="navbar-brand" href="/"><span style="font-size: 50px">EME</span></a>
-        <% end %>
-
-        <nav>
-          <ul class="nav navbar-nav navbar-right ml-auto bg p-4">
-            <% if user_signed_in? %>
-              <%= render 'layouts/user_header' %>
-            <% else %>
-              <!--トップ画面（ログイン前）にはヘッダーを設けないため何も記載していない-->
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </nav>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</nav>
