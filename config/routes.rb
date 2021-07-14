@@ -35,5 +35,6 @@ Rails.application.routes.draw do
   
   resources :notifications, only: :index                                  # 通知のpath
   delete 'notifications/destroy_all' => 'notifications#destroy_all', as: 'notification_all_delete'  #通知削除のpath
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

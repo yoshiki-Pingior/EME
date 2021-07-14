@@ -6,7 +6,6 @@ class PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
     if @post_comment.save
-    # redirect_to request.referer
     @post.create_notification_post_comment!(current_user, @post_comment.id)
     else
       render 'error'               #入力にエラーが生じた際に表示するエラー内容
